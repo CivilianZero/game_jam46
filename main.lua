@@ -13,19 +13,21 @@ function love.load()
 	SaveData = {}
 
 	-- check for saved data, load using table.show if exists
-	if love.data.getInfo("data.lua") then
+	if love.filesystem.getInfo("data.lua") then
 		local data = love.filesystem.load("data.lua")
 		data()
 	end
 
 	-- TiledMap = Tiled('assets/maps/TiledMap.lua')
-
+	PixelFont = love.graphics.newFont('assets/fonts/Kenney Pixel.ttf', 50)
 end
 
 function love.update(dt)
 end
 
 function love.draw()
+	love.graphics.setFont(PixelFont)
+	love.graphics.print("this is a font test")
 end
 
 -- utility function for determing distance between two points

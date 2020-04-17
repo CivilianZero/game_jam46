@@ -30,7 +30,8 @@ function love.draw()
 	love.graphics.print("this is a font test")
 end
 
--- utility function for determing distance between two points
-function DistanceBetween(x1, y1, x2, y2)
-	return math.sqrt((y2 - y1)^2 + (x2 - x1)^2)
+-- utility function for determing collision
+function CheckCollision(obj1, obj2)
+	local distance = math.sqrt((obj2.y - obj1.y)^2 + (obj2.x - obj1.x)^2)
+	return distance < obj1.size + obj2.size
 end

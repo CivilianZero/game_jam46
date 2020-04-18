@@ -85,6 +85,9 @@ function love.load()
 	Talkies.talkSound = love.audio.newSource("assets/sounds/bep.wav", "static")
 
 	Talkies.say("The Heart in your Basement", "...feed me", {textSpeed = "slow", onstart = function() OnStart() end, oncomplete = function() OnComplete() end})
+	
+	-- debugging for collision
+	ColType = ''
 end
 
 function love.update(dt)
@@ -100,13 +103,15 @@ end
 
 function love.draw()
 	love.graphics.setFont(PixelFont)
+	love.graphics.setColor(1, 1, 1)
 	Cam:attach()
 	OverWorld:drawLayer(OverWorld.layers["tilemap"])
 	love.graphics.draw(Player.sprite, Player.body:getX(), Player.body:getY(), nil, nil, nil,Player.sprite:getWidth()/2, Player.sprite:getHeight()/2)
 	love.graphics.draw(Heart.sprite, Heart.x, Heart.y, nil, .5, .5, Heart.sprite:getWidth()/2, Heart.sprite:getHeight()/2)
 	Cam:detach()
+	love.graphics.setColor(1, 0, 0)
 	love.graphics.print("Cam: " .. CamX .. ", " .. CamY .. "    World: " .. WorldX .. ", " .. WorldY)
-	love.graphics.print("Facing: " .. Player.facing, 0, 30)
+	love.graphics.print("Obj Type: " .. ColType, 0, 30)
 	Talkies.draw()
 end
 
@@ -140,6 +145,7 @@ function SpawnCollisionObjects(x, y, width, height)
 	obj.body = love.physics.newBody(World, x, y, "static")
 	obj.shape = love.physics.newRectangleShape(width/2, height/2, width, height)
 	obj.fixture = love.physics.newFixture(obj.body, obj.shape)
+	obj.fixture:setUserData("Wall")
 	obj.width = width
 	obj.height = height
 end
@@ -153,10 +159,12 @@ function CheckCollision(obj1, obj2)
 end
 
 -- callback functions for physics World
-function BeginContact()
+function BeginContact(a, b, col)
+	ColType = a:getUserData() .. " is colliding with " .. b:getUserData()
 end
 
-function EndContact()
+function EndContact(a, b, col)
+	ColType = ""
 end
 
 -- callback functions for Talkies

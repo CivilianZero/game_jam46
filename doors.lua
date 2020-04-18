@@ -7,6 +7,7 @@ function GenerateDoor(x, y, width, height)
 	door.shape = love.physics.newRectangleShape(width/2, height/2, width, height)
 	door.fixture = love.physics.newFixture(door.body, door.shape)
 	door.fixture:setSensor(true)
+	door.fixture:setUserData("Door")
 	door.width = width
 	door.height = height
 

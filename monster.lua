@@ -6,6 +6,7 @@ function SpawnMonster()
 		monster.body = love.physics.newBody(World, obj.x, obj.y, "dynamic")
 		monster.shape = love.physics.newRectangleShape(obj.width/2, obj.height/2, obj.width, obj.height)
 		monster.fixture = love.physics.newFixture(monster.body, monster.shape)
+		monster.fixture:setUserData("Monster")
 		monster.dead = false
 		monster.bloodType = math.floor(math.random(1, 4))
 

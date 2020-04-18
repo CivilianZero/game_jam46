@@ -4,7 +4,9 @@ Player.isMoving = false
 Player.body = love.physics.newBody(World, 176, 576, "dynamic")
 Player.shape = love.physics.newRectangleShape(12, 8)
 Player.fixture = love.physics.newFixture(Player.body, Player.shape)
+Player.fixture:setUserData("Player")
 Player.body:setFixedRotation(true)
+Player.body:setMass(10)
 Player.speed = 100
 Player.facing = 1 -- 1: down, 2: left, 3: up, 4: right
 Player.moving = false
@@ -27,7 +29,8 @@ function UpdatePlayer(dt)
 		Player.facing = 2
 		Player.walking = true
 	elseif love.keyboard.isDown("d") then
-		Player.body:setX(Player.body:getX() + Player.speed * dt)
+		-- Player.body:setX(Player.body:getX() + Player.speed * dt)
+		Player.body:applyForce(1000, 0) 
 		Player.facing = 4
 		Player.walking = true
 	else

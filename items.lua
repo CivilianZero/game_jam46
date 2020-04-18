@@ -1,3 +1,4 @@
+-- scheduled for demolition
 Items = {}
 
 local item = {}

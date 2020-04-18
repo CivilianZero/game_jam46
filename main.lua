@@ -31,6 +31,7 @@ function love.draw()
 end
 
 -- utility function for determing collision
+-- returns a boolean
 function CheckCollision(obj1, obj2)
 	local distance = math.sqrt((obj2.y - obj1.y)^2 + (obj2.x - obj1.x)^2)
 	return distance < obj1.size + obj2.size

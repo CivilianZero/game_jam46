@@ -60,11 +60,16 @@ function love.load()
 	PixelFont = love.graphics.newFont('assets/fonts/Kenney Pixel.ttf', 50)
 
 	-- camera object
-	Cam = camera(Heart.x, Heart.y + 25, 3)
+	Cam = camera(180, 532, 3)
 
 	-- tilemaps
 	-- Basement = sti('assets/maps/basement.lua')
-	-- OverWorld = sti('assets/maps/overWorld.lua')
+	OverWorld = sti('assets/maps/tilemap.lua')
+
+	-- creare collision objects for tilemaps
+	for i,obj in pairs(OverWorld.layers["collision"].objects) do
+		SpawnCollisionObjects(obj.x, obj.y, obj.width, obj.height)
+	end
 
 	-- coordinates for debugging camera and player position
 	CamX = 0
@@ -84,6 +89,7 @@ end
 
 function love.update(dt)
 	World:update(dt)
+	OverWorld:update(dt)
 	if state == gameStates.gameLoop then
 		UpdatePlayer(dt)
 	end
@@ -94,11 +100,12 @@ end
 
 function love.draw()
 	love.graphics.setFont(PixelFont)
-	love.graphics.print("Cam: " .. CamX .. ", " .. CamY .. "    World: " .. WorldX .. ", " .. WorldY)
 	Cam:attach()
-	love.graphics.draw(Player.sprite, Player.body:getX(), Player.body:getY(), nil, nil, nil, 8, 8)
-	love.graphics.draw(Heart.sprite, Heart.x, Heart.y, nil, nil, nil, Heart.sprite:getWidth()/2, Heart.sprite:getHeight()/2)
+	OverWorld:drawLayer(OverWorld.layers["tilemap"])
+	love.graphics.draw(Player.sprite, Player.body:getX(), Player.body:getY(), nil, nil, nil,Player.sprite:getWidth()/2, Player.sprite:getHeight()/2)
+	love.graphics.draw(Heart.sprite, Heart.x, Heart.y, nil, .5, .5, Heart.sprite:getWidth()/2, Heart.sprite:getHeight()/2)
 	Cam:detach()
+	love.graphics.print("Cam: " .. CamX .. ", " .. CamY .. "    World: " .. WorldX .. ", " .. WorldY)
 	Talkies.draw()
 end
 
@@ -126,6 +133,16 @@ function InputHandler(input)
 	end
 end
 
+-- creates collision objects
+function SpawnCollisionObjects(x, y, width, height)
+	local obj = {}
+	obj.body = love.physics.newBody(World, x, y, "static")
+	obj.shape = love.physics.newRectangleShape(width/2, height/2, width, height)
+	obj.fixture = love.physics.newFixture(obj.body, obj.shape)
+	obj.width = width
+	obj.height = height
+end
+
 -- utility function for determing collision
 -- returns a boolean
 -- probably not needed
@@ -136,9 +153,11 @@ end
 
 -- callback functions for physics World
 function BeginContact()
+	Player.speed = 0
 end
 
 function EndContact()
+	Player.speed = 150
 end
 
 -- callback functions for Talkies

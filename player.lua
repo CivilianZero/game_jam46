@@ -4,16 +4,16 @@ Player.isMoving = false
 Player.body = love.physics.newBody(World, 100, 100, "dynamic")
 Player.shape = love.physics.newRectangleShape(32, 32)
 Player.fixture = love.physics.newFixture(Player.body, Player.shape)
-Player.speed = 200
+Player.speed = 100
 Player.facing = 1 -- 1: down, 2: left, 3: up, 4: right
 Player.moving = false
-Player.size = 32
+Player.size = 32 -- probably not needed
 -- Player.grid = Anim8.newGrid(32, 32, 128, 64)
 -- Player.animation = Anim8.newAnimation(Player.grid('1-2', 1, '1-2', 2, '1-2', 3, '1-2', 4), 0.2)
 Player.sprite = Sprites.player
 
 function UpdatePlayer(dt)
-	-- vertical movement
+	HaltMovement()
 	if love.keyboard.isDown("w") then
 		Player.body:setY(Player.body:getY() - Player.speed * dt)
 		Player.facing = 3
@@ -22,12 +22,7 @@ function UpdatePlayer(dt)
 		Player.body:setY(Player.body:getY() + Player.speed * dt)
 		Player.facing = 1
 		Player.walking = true
-	else
-		Player.walking = false
-	end
-
-	-- horizontal movement
-	if love.keyboard.isDown("a") then
+	elseif love.keyboard.isDown("a") then
 		Player.body:setX(Player.body:getX() - Player.speed * dt)
 		Player.facing = 2
 		Player.walking = true
@@ -57,3 +52,20 @@ end
 -- 		Player.sprite = Sprites.player_right
 -- 	end
 -- end
+
+function HaltMovement()
+	local function keyDown(key)
+		return love.keyboard.isDown(key)
+	end
+	
+	if keyDown("w") and keyDown("s") 
+	or keyDown("w") and keyDown("a") 
+	or keyDown("w") and keyDown("d") 
+	or keyDown("a") and keyDown("d") 
+	or keyDown("s") and keyDown("a") 
+	or keyDown("s") and keyDown("d") then
+		Player.speed = 0
+	else
+		Player.speed = 100
+	end
+end

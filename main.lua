@@ -23,7 +23,6 @@ gameStates.gameLoop = {
 local sti = require('libraries.Simple-Tiled-Implementation-master.sti')
 
 function love.load()
-	love.graphics.setBackgroundColor(1, 0, 0)
 	love.graphics.setDefaultFilter("nearest", "nearest")
 	-- physics world config
 	World = love.physics.newWorld(0, 0, false)
@@ -77,11 +76,10 @@ end
 function love.draw()
 	love.graphics.setFont(PixelFont)
 	love.graphics.print("Cam: " .. CamX .. ", " .. CamY .. "    World: " .. WorldX .. ", " .. WorldY)
-	if WhatPush ~= nil then
-		love.graphics.print(WhatPush, 100, 100)
-	end
+	
 	Cam:attach()
 	love.graphics.draw(Player.sprite, Player.body:getX(), Player.body:getY())
+	love.graphics.draw(Heart.sprite, 300, 300)
 	Cam:detach()
 end
 

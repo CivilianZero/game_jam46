@@ -1,7 +1,7 @@
 Player = {}
 
 Player.isMoving = false
-Player.body = love.physics.newBody(World, 100, 100, "dynamic")
+Player.body = love.physics.newBody(World, love.graphics.getWidth()/2, love.graphics.getHeight()/2, "dynamic")
 Player.shape = love.physics.newRectangleShape(32, 32)
 Player.fixture = love.physics.newFixture(Player.body, Player.shape)
 Player.speed = 100
@@ -34,6 +34,9 @@ function UpdatePlayer(dt)
 		Player.walking = false
 	end
 
+	if love.keyboard.isDown("space") then
+		-- do the interact thing
+	end
 end
 
 -- not sure of animation/sprite implementation, depends on sprite sheet

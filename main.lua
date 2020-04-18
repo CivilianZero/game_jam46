@@ -1,6 +1,29 @@
+--state management and non-player keybindings
+local state
+local gameStates = {}
+
+gameStates.menu = {
+	bindings = {
+		backToGame = function() state = gameStates.gameLoop end
+	},
+	keys = {
+		escape = "backToGame"
+	}
+}
+gameStates.gameLoop = {
+	bindings = {
+		openMenu = function() state = gameStates.menu end,
+	},
+	keys = {
+		escape = "openMenu",
+	}
+}
+
+-- local imports
 local sti = require('libraries.Simple-Tiled-Implementation-master.sti')
 
 function love.load()
+	love.graphics.setBackgroundColor(1, 0, 0)
 	love.graphics.setDefaultFilter("nearest", "nearest")
 	-- physics world config
 	World = love.physics.newWorld(0, 0, false)
@@ -28,20 +51,25 @@ function love.load()
 	PixelFont = love.graphics.newFont('assets/fonts/Kenney Pixel.ttf', 50)
 
 	-- camera object
-	Cam = camera(100, 100, 3)
+	Cam = camera(Player.body:getX(), Player.body:getY(), 3)
+
 
 	-- tilemaps
 	-- Basement = sti('assets/maps/basement.lua')
 	-- OverWorld = sti('assets/maps/overWorld.lua')
-	CamX = ""
-	CamY = ""
-	WorldX = ""
-	WorldY = ""
+	CamX = 0
+	CamY = 0
+	WorldX = 0
+	WorldY = 0
+
+	state = gameStates.gameLoop
 end
 
 function love.update(dt)
 	World:update(dt)
-	UpdatePlayer(dt)
+	if state == gameStates.gameLoop then
+		UpdatePlayer(dt)
+	end
 	-- Player.animation:update(dt)
 	-- Heart.animation:update(dt)
 end
@@ -49,6 +77,9 @@ end
 function love.draw()
 	love.graphics.setFont(PixelFont)
 	love.graphics.print("Cam: " .. CamX .. ", " .. CamY .. "    World: " .. WorldX .. ", " .. WorldY)
+	if WhatPush ~= nil then
+		love.graphics.print(WhatPush, 100, 100)
+	end
 	Cam:attach()
 	love.graphics.draw(Player.sprite, Player.body:getX(), Player.body:getY())
 	Cam:detach()
@@ -62,6 +93,19 @@ function love.mousepressed(x, y, b, istouch)
 		CamY = math.floor(CamY)
 		WorldX = math.floor(WorldX)
 		WorldY = math.floor(WorldY)
+	end
+end
+
+function love.keypressed(key)
+	local binding = state.keys[key]
+  return InputHandler( binding )
+end
+
+-- utility function for handling input
+function InputHandler( input )
+	local action = state.bindings[input]
+	if action then
+		return action()
 	end
 end
 

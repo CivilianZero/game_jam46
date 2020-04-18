@@ -2,7 +2,7 @@ Player = {}
 
 Player.isMoving = false
 Player.body = love.physics.newBody(World, love.graphics.getWidth()/2, love.graphics.getHeight()/2, "dynamic")
-Player.shape = love.physics.newRectangleShape(32, 32)
+Player.shape = love.physics.newRectangleShape(16, 16)
 Player.fixture = love.physics.newFixture(Player.body, Player.shape)
 Player.speed = 100
 Player.facing = 1 -- 1: down, 2: left, 3: up, 4: right

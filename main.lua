@@ -18,6 +18,14 @@ gameStates.gameLoop = {
 		escape = "openMenu",
 	}
 }
+gameStates.dialog = {
+	bindings = {
+		progressDialog = function() Talkies.onAction() end
+	},
+	keys = {
+		space = "progressDialog"
+	}
+}
 
 -- local imports
 local sti = require('libraries.sti.sti')
@@ -33,6 +41,7 @@ function love.load()
 	require('sprites')
 	require('player')
 	require('heart')
+	require('monster')
 	-- required libraries
 	Anim8 = require('libraries.anim8.anim8')
 	Talkies = require('libraries.talkies.talkies')
@@ -51,23 +60,26 @@ function love.load()
 	PixelFont = love.graphics.newFont('assets/fonts/Kenney Pixel.ttf', 50)
 
 	-- camera object
-	Cam = camera(Player.body:getX(), Player.body:getY(), 3)
-
+	Cam = camera(Heart.x, Heart.y + 25, 3)
 
 	-- tilemaps
 	-- Basement = sti('assets/maps/basement.lua')
 	-- OverWorld = sti('assets/maps/overWorld.lua')
+
+	-- coordinates for debugging camera and player position
 	CamX = 0
 	CamY = 0
 	WorldX = 0
 	WorldY = 0
 
+	-- set default state (set to skip menu)
 	state = gameStates.gameLoop
 
 	-- Talkies config
 	Talkies.font = PixelFont
 	Talkies.talkSound = love.audio.newSource("assets/sounds/typeSound.wav", "static")
-	
+
+	Talkies.say("The Heart in your Basement", "...feed me", {textSpeed = "slow", onstart = function() OnStart() end, oncomplete = function() OnComplete() end})
 end
 
 function love.update(dt)
@@ -84,9 +96,10 @@ function love.draw()
 	love.graphics.setFont(PixelFont)
 	love.graphics.print("Cam: " .. CamX .. ", " .. CamY .. "    World: " .. WorldX .. ", " .. WorldY)
 	Cam:attach()
-	love.graphics.draw(Player.sprite, Player.body:getX(), Player.body:getY())
-	love.graphics.draw(Heart.sprite, 300, 300)
+	love.graphics.draw(Player.sprite, Player.body:getX(), Player.body:getY(), nil, nil, nil, 8, 8)
+	love.graphics.draw(Heart.sprite, Heart.x, Heart.y, nil, nil, nil, Heart.sprite:getWidth()/2, Heart.sprite:getHeight()/2)
 	Cam:detach()
+	Talkies.draw()
 end
 
 function love.mousepressed(x, y, b, istouch)
@@ -102,11 +115,11 @@ end
 
 function love.keypressed(key)
 	local binding = state.keys[key]
-  return InputHandler(binding)
+  InputHandler(binding)
 end
 
 -- utility function for handling input
-function InputHandler( input )
+function InputHandler(input)
 	local action = state.bindings[input]
 	if action then
 		return action()
@@ -126,4 +139,13 @@ function BeginContact()
 end
 
 function EndContact()
+end
+
+-- callback functions for Talkies
+function OnStart()
+	state = gameStates.dialog
+end
+
+function OnComplete()
+	state = gameStates.gameLoop
 end

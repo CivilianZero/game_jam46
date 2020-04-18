@@ -1,7 +1,5 @@
 Player = {}
 
-Player.x = 100
-Player.y = 100
 Player.isMoving = false
 Player.body = love.physics.newBody(World, 100, 100, "dynamic")
 Player.shape = love.physics.newRectangleShape(32, 32)
@@ -17,11 +15,11 @@ Player.sprite = Sprites.player
 function UpdatePlayer(dt)
 	-- vertical movement
 	if love.keyboard.isDown("w") then
-		Player.body:setX(Player.body:getX() - Player.speed * dt)
+		Player.body:setY(Player.body:getY() - Player.speed * dt)
 		Player.facing = 3
 		Player.walking = true
 	elseif love.keyboard.isDown("s") then
-		Player.body:setX(Player.body:getX() + Player.speed * dt)
+		Player.body:setY(Player.body:getY() + Player.speed * dt)
 		Player.facing = 1
 		Player.walking = true
 	else
@@ -30,11 +28,11 @@ function UpdatePlayer(dt)
 
 	-- horizontal movement
 	if love.keyboard.isDown("a") then
-		Player.body:setY(Player.body:getY() - Player.speed * dt)
+		Player.body:setX(Player.body:getX() - Player.speed * dt)
 		Player.facing = 2
 		Player.walking = true
 	elseif love.keyboard.isDown("d") then
-		Player.body:setY(Player.body:getY() + Player.speed * dt)
+		Player.body:setX(Player.body:getX() + Player.speed * dt)
 		Player.facing = 4
 		Player.walking = true
 	else

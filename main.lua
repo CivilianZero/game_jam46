@@ -47,7 +47,7 @@ function love.draw()
 	love.graphics.setFont(PixelFont)
 	love.graphics.print("this is a font test")
 
-	love.graphics.draw(Player.sprite, Player.x, Player.y)
+	love.graphics.draw(Player.sprite, Player.body:getX(), Player.body:getY())
 end
 
 -- utility function for determing collision

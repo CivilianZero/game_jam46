@@ -1,17 +1,15 @@
 Player = {}
 
 Player.isMoving = false
-Player.body = love.physics.newBody(World, 100, 100, "dynamic")
-Player.shape = love.physics.newRectangleShape(32, 32)
+Player.body = love.physics.newBody(World, 300, 400, "dynamic")
+Player.shape = love.physics.newRectangleShape(16, 16)
 Player.fixture = love.physics.newFixture(Player.body, Player.shape)
 Player.speed = 100
 Player.facing = 1 -- 1: down, 2: left, 3: up, 4: right
 Player.moving = false
-Player.size = 32 -- probably not needed
 -- Player.grid = Anim8.newGrid(32, 32, 128, 64)
 -- Player.animation = Anim8.newAnimation(Player.grid('1-2', 1, '1-2', 2, '1-2', 3, '1-2', 4), 0.2)
 Player.sprite = Sprites.player
-Player.itemHeld = nil
 
 function UpdatePlayer(dt)
 	HaltMovement()
@@ -35,6 +33,9 @@ function UpdatePlayer(dt)
 		Player.walking = false
 	end
 
+	if love.keyboard.isDown("space") then
+		-- do the interact thing
+	end
 end
 
 -- not sure of animation/sprite implementation, depends on sprite sheet
@@ -58,7 +59,7 @@ function HaltMovement()
 	local function keyDown(key)
 		return love.keyboard.isDown(key)
 	end
-	
+
 	if keyDown("w") and keyDown("s")
 	or keyDown("w") and keyDown("a")
 	or keyDown("w") and keyDown("d")

@@ -1,4 +1,5 @@
-Sprites = {
-	player = love.graphics.newImage('assets/sprites/character_block.png'),
-	spriteSheet = love.graphics.newImage('assets/sprites/monochrome_transparent.png')
-}
+Sprites = {}
+
+Sprites.player = love.graphics.newImage('assets/sprites/char.png')
+Sprites.heart = love.graphics.newImage('assets/sprites/weird_heart.png')
+-- Sprites.monster = love.graphics.newImage('assets/sprites/')

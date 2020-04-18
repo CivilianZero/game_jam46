@@ -1,10 +1,11 @@
 Monsters = {}
 
-function SpawnMonster()
+function SpawnMonster(x, y)
 	for i,obj in pairs(OverWorld.layers["monsters"].objects) do
 		local monster = {}
-		monster.x = obj.x
-		monster.y = obj.y
+		monster.body = love.physics.newBody(World, x, y, "dynamic")
+		monster.shape = love.physics.newRectangleShape(6, 11, 12, 12)
+		monster.fixture = love.physics.newFixture(monster.body, monster.shape)
 		monster.dead = false
 
 		monster.grid = Anim8.newGrid(16, 16, 32, 32)

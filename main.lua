@@ -106,6 +106,7 @@ function love.draw()
 	love.graphics.draw(Heart.sprite, Heart.x, Heart.y, nil, .5, .5, Heart.sprite:getWidth()/2, Heart.sprite:getHeight()/2)
 	Cam:detach()
 	love.graphics.print("Cam: " .. CamX .. ", " .. CamY .. "    World: " .. WorldX .. ", " .. WorldY)
+	love.graphics.print("Facing: " .. Player.facing, 0, 30)
 	Talkies.draw()
 end
 

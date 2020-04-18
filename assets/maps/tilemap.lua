@@ -8,8 +8,8 @@ return {
   height = 40,
   tilewidth = 16,
   tileheight = 16,
-  nextlayerid = 3,
-  nextobjectid = 7,
+  nextlayerid = 4,
+  nextobjectid = 8,
   properties = {},
   tilesets = {
     {
@@ -43,7 +43,7 @@ return {
     {
       type = "tilelayer",
       id = 1,
-      name = "tilemap",
+      name = "Tilemap",
       x = 0,
       y = 0,
       width = 40,
@@ -100,7 +100,7 @@ return {
     {
       type = "objectgroup",
       id = 2,
-      name = "collision",
+      name = "Collision",
       visible = true,
       opacity = 1,
       offsetx = 0,
@@ -111,7 +111,7 @@ return {
         {
           id = 1,
           name = "",
-          type = "",
+          type = "Wall",
           shape = "rectangle",
           x = 144,
           y = 512,
@@ -124,7 +124,7 @@ return {
         {
           id = 5,
           name = "",
-          type = "",
+          type = "Wall",
           shape = "rectangle",
           x = 144,
           y = 528,
@@ -137,12 +137,38 @@ return {
         {
           id = 6,
           name = "",
-          type = "",
+          type = "Wall",
           shape = "rectangle",
           x = 208,
           y = 528,
           width = 16,
           height = 96,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      id = 3,
+      name = "Monsters",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {
+        {
+          id = 7,
+          name = "Fred",
+          type = "Monster",
+          shape = "rectangle",
+          x = 192,
+          y = 544,
+          width = 16,
+          height = 16,
           rotation = 0,
           visible = true,
           properties = {}

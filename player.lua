@@ -24,18 +24,22 @@ function Player:changeVelocity(dt)
 end
 
 function Player:moveColliding(dt)
-	local actualX, actualY, cols, len = World:move(Player, Player.goalX, Player.goalY)
+	local actualX, actualY, cols, len = World:move(Player, Player.goalX, Player.goalY, self.filter)
 	Player.x, Player.y = actualX, actualY
-	for i=1, len do
-		local col = cols[i]
-		print("collided with ".. tostring(cols[i].other))
-	end
+	-- for i=1, len do
+	-- 	local col = cols[i]
+	-- end
 end
 
 function Player:filter(other)
 	local type = other.name
-	if type == "wall" then return "slide" end
-	if type == "monster" then return "cross" end
+	if type == "Wall" then return "slide" end
+	if type == "Monster" and other.hasBlood then
+		Talkies.say("Creepy Monster", "Here, have some blood.", {textSpeed = "slow", onstart = function() OnStart() end})
+		Talkies.say("", "You got some weird blood!", {oncomplete = function() OnComplete() end})
+		other.hasBlood = false
+		return "touch"
+	end
 end
 
 function Player:update(dt)

@@ -1,13 +1,15 @@
 Monsters = {}
 
-function SpawnMonster()
+function SpawnMonsters()
 	for i,obj in pairs(OverWorld.layers["Monsters"].objects) do
 		local monster = {}
 		World:add(monster, obj.x, obj.y, obj.width, obj.height)
-		monster.x = x
-		monster.y = y
+		monster.x = obj.x
+		monster.y = obj.y
+		monster.width = obj.width
+		monster.height = obj.height
 		monster.name = "Monster"
-		monster.dead = false
+		monster.hasBlood = true
 		monster.bloodType = math.floor(math.random(1, 4))
 
 		monster.grid = Anim8.newGrid(16, 16, 32, 32)

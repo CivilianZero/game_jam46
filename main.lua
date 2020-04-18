@@ -72,7 +72,7 @@ function love.load()
 	ObjectTest = "Test: "
 
 	-- creare collision objects for tilemaps
-	for i,obj in pairs(OverWorld.layers["collision"].objects) do
+	for i,obj in pairs(OverWorld.layers["Collision"].objects) do
 		SpawnCollisionObjects(obj.x, obj.y, obj.width, obj.height)
 	end
 
@@ -90,6 +90,8 @@ function love.load()
 	Talkies.talkSound = love.audio.newSource("assets/sounds/bep.wav", "static")
 
 	Talkies.say("The Heart in your Basement", "...feed me", {textSpeed = "slow", onstart = function() OnStart() end, oncomplete = function() OnComplete() end})
+
+	SpawnMonsters()
 end
 
 function love.update(dt)
@@ -108,14 +110,19 @@ function love.draw()
 	Cam:attach()
 
 	love.graphics.setColor(1, 1, 1)
-	OverWorld:drawLayer(OverWorld.layers["tilemap"])
+	OverWorld:drawLayer(OverWorld.layers["Tilemap"])
 	love.graphics.draw(Player.sprite, Player.x, Player.y, nil, nil, nil, 2.5, nil)
 	love.graphics.draw(Heart.sprite, Heart.x, Heart.y, nil, .5, .5, Heart.sprite:getWidth()/2, Heart.sprite:getHeight()/2)
+	for i,m in ipairs(Monsters) do
+		love.graphics.setColor(0, 0, 1)
+		love.graphics.rectangle("fill", m.x, m.y, m.width, m.height)
+	end
 	
 	Cam:detach()
 
 	love.graphics.setColor(1, 0, 0)
 	love.graphics.print("Cam: " .. CamX .. ", " .. CamY .. "    World: " .. WorldX .. ", " .. WorldY)
+	love.graphics.print(ObjectTest, 0, 30)
 	Talkies.draw()
 end
 
@@ -145,8 +152,13 @@ end
 
 -- creates collision objects
 function SpawnCollisionObjects(x, y, w, h)
-	local obj = {}
-	World:add(obj, x, y, w, h)
+	local wall = {}
+	wall.name = "Wall"
+	wall.x = x
+	wall.y = y
+	wall.width = w
+	wall.height = h
+	World:add(wall, x, y, w, h)
 end
 
 -- callback functions for Talkies
@@ -157,3 +169,7 @@ end
 function OnComplete()
 	state = gameStates.gameLoop
 end
+
+-- function OnMonsterComplete()
+-- 	Talkies.say("", "You got some blood!", {onstart = function() OnStart() end, oncomplete = function() OnComplete() end})
+-- end

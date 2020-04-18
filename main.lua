@@ -32,9 +32,15 @@ local sti = require('libraries.sti.sti')
 
 function love.load()
 	love.graphics.setDefaultFilter("nearest", "nearest")
+
+	-- required libraries
+	Anim8 = require('libraries.anim8.anim8')
+	Talkies = require('libraries.talkies.talkies')
+	local camera = require('libraries.hump.camera')
+	local bump = require('libraries.bump.bump')
+
 	-- physics world config
-	World = love.physics.newWorld(0, 0, false)
-	World:setCallbacks(BeginContact, EndContact)
+	World = bump.newWorld(16)
 
 	-- required files
 	require('show')
@@ -42,10 +48,6 @@ function love.load()
 	require('player')
 	require('heart')
 	require('monster')
-	-- required libraries
-	Anim8 = require('libraries.anim8.anim8')
-	Talkies = require('libraries.talkies.talkies')
-	local camera = require('libraries.hump.camera')
 
 	-- table for storing save data
 	SaveData = {}
@@ -57,7 +59,7 @@ function love.load()
 	end
 
 	-- TiledMap = Tiled('assets/maps/TiledMap.lua')
-	PixelFont = love.graphics.newFont('assets/fonts/Kenney Pixel.ttf', 50)
+	PixelFont = love.graphics.newFont('assets/fonts/Kenney Pixel.ttf', 40)
 
 	-- camera object
 	Cam = camera(180, 532, 3)
@@ -65,6 +67,9 @@ function love.load()
 	-- tilemaps
 	-- Basement = sti('assets/maps/basement.lua')
 	OverWorld = sti('assets/maps/tilemap.lua')
+	
+	-- debugging for collision
+	ObjectTest = "Test: "
 
 	-- creare collision objects for tilemaps
 	for i,obj in pairs(OverWorld.layers["collision"].objects) do
@@ -85,16 +90,12 @@ function love.load()
 	Talkies.talkSound = love.audio.newSource("assets/sounds/bep.wav", "static")
 
 	Talkies.say("The Heart in your Basement", "...feed me", {textSpeed = "slow", onstart = function() OnStart() end, oncomplete = function() OnComplete() end})
-	
-	-- debugging for collision
-	ColType = ''
 end
 
 function love.update(dt)
-	World:update(dt)
 	OverWorld:update(dt)
 	if state == gameStates.gameLoop then
-		UpdatePlayer(dt)
+		Player:update(dt)
 	end
 	Talkies.update(dt)
 	-- Player.animation:update(dt)
@@ -103,15 +104,18 @@ end
 
 function love.draw()
 	love.graphics.setFont(PixelFont)
-	love.graphics.setColor(1, 1, 1)
+
 	Cam:attach()
+
+	love.graphics.setColor(1, 1, 1)
 	OverWorld:drawLayer(OverWorld.layers["tilemap"])
-	love.graphics.draw(Player.sprite, Player.body:getX(), Player.body:getY(), nil, nil, nil,Player.sprite:getWidth()/2, Player.sprite:getHeight()/2)
+	love.graphics.draw(Player.sprite, Player.x, Player.y, nil, nil, nil, 2.5, nil)
 	love.graphics.draw(Heart.sprite, Heart.x, Heart.y, nil, .5, .5, Heart.sprite:getWidth()/2, Heart.sprite:getHeight()/2)
+	
 	Cam:detach()
+
 	love.graphics.setColor(1, 0, 0)
 	love.graphics.print("Cam: " .. CamX .. ", " .. CamY .. "    World: " .. WorldX .. ", " .. WorldY)
-	love.graphics.print("Obj Type: " .. ColType, 0, 30)
 	Talkies.draw()
 end
 
@@ -140,31 +144,9 @@ function InputHandler(input)
 end
 
 -- creates collision objects
-function SpawnCollisionObjects(x, y, width, height)
+function SpawnCollisionObjects(x, y, w, h)
 	local obj = {}
-	obj.body = love.physics.newBody(World, x, y, "static")
-	obj.shape = love.physics.newRectangleShape(width/2, height/2, width, height)
-	obj.fixture = love.physics.newFixture(obj.body, obj.shape)
-	obj.fixture:setUserData("Wall")
-	obj.width = width
-	obj.height = height
-end
-
--- utility function for determing collision
--- returns a boolean
--- probably not needed
-function CheckCollision(obj1, obj2)
-	local distance = math.sqrt((obj2.y - obj1.y)^2 + (obj2.x - obj1.x)^2)
-	return distance < obj1.size + obj2.size
-end
-
--- callback functions for physics World
-function BeginContact(a, b, col)
-	ColType = a:getUserData() .. " is colliding with " .. b:getUserData()
-end
-
-function EndContact(a, b, col)
-	ColType = ""
+	World:add(obj, x, y, w, h)
 end
 
 -- callback functions for Talkies

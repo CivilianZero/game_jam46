@@ -1,12 +1,12 @@
 Monsters = {}
 
 function SpawnMonster()
-	for i,obj in pairs(OverWorld.layers["monsters"].objects) do
+	for i,obj in pairs(OverWorld.layers["Monsters"].objects) do
 		local monster = {}
-		monster.body = love.physics.newBody(World, obj.x, obj.y, "dynamic")
-		monster.shape = love.physics.newRectangleShape(obj.width/2, obj.height/2, obj.width, obj.height)
-		monster.fixture = love.physics.newFixture(monster.body, monster.shape)
-		monster.fixture:setUserData("Monster")
+		World:add(monster, obj.x, obj.y, obj.width, obj.height)
+		monster.x = x
+		monster.y = y
+		monster.name = "Monster"
 		monster.dead = false
 		monster.bloodType = math.floor(math.random(1, 4))
 

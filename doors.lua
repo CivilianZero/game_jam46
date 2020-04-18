@@ -2,14 +2,15 @@ Doors = {}
 
 -- used for generating new doors from tilemap object layer, also used for stairs, ladders, etc.
 function GenerateDoor(x, y, width, height)
-	local door = {}
-	door.body = love.physics.newBody(World, x, y, "static")
-	door.shape = love.physics.newRectangleShape(width/2, height/2, width, height)
-	door.fixture = love.physics.newFixture(door.body, door.shape)
-	door.fixture:setSensor(true)
-	door.fixture:setUserData("Door")
-	door.width = width
-	door.height = height
+	for i,obj in pairs(OverWorld.layers["Doors"].objects) do
+		local door = {}
+		door.x = x
+		door.y = y
+		door.width = width
+		door.height = height
+		door.name = "Door"
+		World:add(door, x, y, width, height)
 
-	table.insert(Doors, door)
+		table.insert(Doors, door)
+	end
 end

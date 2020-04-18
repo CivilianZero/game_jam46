@@ -122,32 +122,6 @@ return {
           properties = {}
         },
         {
-          id = 2,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 160,
-          y = 544,
-          width = 0,
-          height = 32,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 3,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 160,
-          y = 544,
-          width = 0,
-          height = 32,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
           id = 5,
           name = "",
           type = "",

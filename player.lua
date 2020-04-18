@@ -11,7 +11,6 @@ Player.size = 32 -- probably not needed
 -- Player.grid = Anim8.newGrid(32, 32, 128, 64)
 -- Player.animation = Anim8.newAnimation(Player.grid('1-2', 1, '1-2', 2, '1-2', 3, '1-2', 4), 0.2)
 Player.sprite = Sprites.player
-Player.itemHeld = nil
 
 function UpdatePlayer(dt)
 	HaltMovement()
@@ -58,7 +57,7 @@ function HaltMovement()
 	local function keyDown(key)
 		return love.keyboard.isDown(key)
 	end
-	
+
 	if keyDown("w") and keyDown("s")
 	or keyDown("w") and keyDown("a")
 	or keyDown("w") and keyDown("d")

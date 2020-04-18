@@ -8,6 +8,7 @@ Player = {
 	speed = 200,
 	facing = 1, -- 1: down, 2: left, 3: up, 4: right
 	moving = false,
+	size = 32,
 	-- grid = Anim8.newGrid(32, 32, 128, 64),
 	-- animation = Anim8.newAnimation(Player.grid('1-2', 1, '1-2', 2, '1-2', 3, '1-2', 4), 0.2)
 	-- sprite = Sprites.player_down

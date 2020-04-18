@@ -34,11 +34,16 @@ end
 function Player:filter(other)
 	local type = other.name
 	if type == "Wall" then return "slide" end
-	if type == "Monster" and other.hasBlood then
-		Talkies.say("Creepy Monster", "Here, have some blood.", {textSpeed = "slow", onstart = function() OnStart() end})
-		Talkies.say("", "You got some weird blood!", {oncomplete = function() OnComplete() end})
+	if type == "Monster" then
+		if other.hasBlood then
+			Talkies.say("Creepy Monster", "Here, have some blood.", {textSpeed = "slow", onstart = function() OnStart() end})
+			Talkies.say("", "You got some weird blood!", {oncomplete = function() OnComplete() end})
+		else
+			Talkies.say("Creepy Monster", "I will not let you drain me dry!", {onstart = function() OnStart() end, oncomplete = function() OnComplete() end})
+		end
 		other.hasBlood = false
-		return "touch"
+		Player.goalX = Player.x - 1
+		return "slide"
 	end
 end
 

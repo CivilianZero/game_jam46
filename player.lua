@@ -7,7 +7,6 @@ Player.fixture = love.physics.newFixture(Player.body, Player.shape)
 Player.speed = 100
 Player.facing = 1 -- 1: down, 2: left, 3: up, 4: right
 Player.moving = false
-Player.size = 32 -- probably not needed
 -- Player.grid = Anim8.newGrid(32, 32, 128, 64)
 -- Player.animation = Anim8.newAnimation(Player.grid('1-2', 1, '1-2', 2, '1-2', 3, '1-2', 4), 0.2)
 Player.sprite = Sprites.player

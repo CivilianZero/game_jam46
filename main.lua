@@ -153,11 +153,9 @@ end
 
 -- callback functions for physics World
 function BeginContact()
-	Player.speed = 0
 end
 
 function EndContact()
-	Player.speed = 150
 end
 
 -- callback functions for Talkies

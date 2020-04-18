@@ -2,7 +2,7 @@ Player = {}
 
 Player.isMoving = false
 Player.body = love.physics.newBody(World, 176, 576, "dynamic")
-Player.shape = love.physics.newRectangleShape(16, 8)
+Player.shape = love.physics.newRectangleShape(12, 8)
 Player.fixture = love.physics.newFixture(Player.body, Player.shape)
 Player.body:setFixedRotation(true)
 Player.speed = 100

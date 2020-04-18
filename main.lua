@@ -77,7 +77,7 @@ function love.load()
 
 	-- Talkies config
 	Talkies.font = PixelFont
-	Talkies.talkSound = love.audio.newSource("assets/sounds/typeSound.wav", "static")
+	Talkies.talkSound = love.audio.newSource("assets/sounds/bep.wav", "static")
 
 	Talkies.say("The Heart in your Basement", "...feed me", {textSpeed = "slow", onstart = function() OnStart() end, oncomplete = function() OnComplete() end})
 end

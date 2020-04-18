@@ -3,7 +3,7 @@ function love.load()
 	require('show')
 	-- required libraries
 	Anim8 = require('libraries.anim8-master.anim8')
-	CameraFile = require('libraries.hump-master.camera')
+	local camera = require('libraries.hump-master.camera')
 	Tiled = require('libraries.Simple-Tiled-Implementation-master.sti')
 
 	-- table for including sprites
@@ -20,6 +20,9 @@ function love.load()
 
 	-- TiledMap = Tiled('assets/maps/TiledMap.lua')
 	PixelFont = love.graphics.newFont('assets/fonts/Kenney Pixel.ttf', 50)
+
+	-- camera object
+	Cam = CameraFile()
 end
 
 function love.update(dt)

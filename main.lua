@@ -1,3 +1,5 @@
+local sti = require('libraries.Simple-Tiled-Implementation-master.sti')
+
 function love.load()
 	-- physics world config
 	World = love.physics.newWorld(0, 0, false)
@@ -10,11 +12,7 @@ function love.load()
 	require('heart')
 	-- required libraries
 	Anim8 = require('libraries.anim8-master.anim8')
-	Tiled = require('libraries.Simple-Tiled-Implementation-master.sti')
 	local camera = require('libraries.hump-master.camera')
-
-	-- table for including sprites
-	Sprites = {}
 
 	-- table for storing save data
 	SaveData = {}
@@ -32,8 +30,8 @@ function love.load()
 	Cam = camera()
 
 	-- tilemaps
-	-- Basement = Tiled('assets/maps/basement.lua')
-	-- OverWorld = Tiled('assets/maps/overWorld.lua')
+	-- Basement = sti('assets/maps/basement.lua')
+	-- OverWorld = sti('assets/maps/overWorld.lua')
 end
 
 function love.update(dt)
@@ -48,6 +46,10 @@ function love.draw()
 	love.graphics.print("this is a font test")
 
 	love.graphics.draw(Player.sprite, Player.body:getX(), Player.body:getY())
+	if Player.itemHeld ~= nil then
+		love.graphics.draw(Player.itemHeld.sprite, love.graphics.getWidth() - 40, love.graphics.getHeight() - 40, nil, 0.9, 0.9, Player.itemHeld.sprite:getWidth()/2, Player.itemHeld:getHeight()/2)
+	end
+	love.graphics.draw(Sprites.inventory, love.graphics.getWidth() - 40, love.graphics.getHeight() - 40, nil, nil, nil, Sprites.inventory:getWidth()/2, Sprites.inventory:getHeight()/2)
 end
 
 -- utility function for determing collision

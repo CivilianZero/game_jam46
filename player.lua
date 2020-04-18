@@ -1,18 +1,18 @@
-Player = {
-	x = 0,
-	y = 0,
-	isMoving = false,
-	body = love.physics.newBody(World, 100, 100, "dynamic"),
-	shape = love.physics.newRectangleShape(32, 32),
-	fixture = love.physics.newFixture(Player.body, Player.shape),
-	speed = 200,
-	facing = 1, -- 1: down, 2: left, 3: up, 4: right
-	moving = false,
-	size = 32,
-	-- grid = Anim8.newGrid(32, 32, 128, 64),
-	-- animation = Anim8.newAnimation(Player.grid('1-2', 1, '1-2', 2, '1-2', 3, '1-2', 4), 0.2)
-	-- sprite = Sprites.player_down
-}
+Player = {}
+
+Player.x = 100
+Player.y = 100
+Player.isMoving = false
+Player.body = love.physics.newBody(World, 100, 100, "dynamic")
+Player.shape = love.physics.newRectangleShape(32, 32)
+Player.fixture = love.physics.newFixture(Player.body, Player.shape)
+Player.speed = 200
+Player.facing = 1 -- 1: down, 2: left, 3: up, 4: right
+Player.moving = false
+Player.size = 32
+-- Player.grid = Anim8.newGrid(32, 32, 128, 64)
+-- Player.animation = Anim8.newAnimation(Player.grid('1-2', 1, '1-2', 2, '1-2', 3, '1-2', 4), 0.2)
+Player.sprite = Sprites.player
 
 function UpdatePlayer(dt)
 	-- vertical movement

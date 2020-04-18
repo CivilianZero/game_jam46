@@ -5,7 +5,9 @@ function love.load()
 
 	-- required files
 	require('show')
+	require('sprites')
 	require('player')
+	require('heart')
 	-- required libraries
 	Anim8 = require('libraries.anim8-master.anim8')
 	Tiled = require('libraries.Simple-Tiled-Implementation-master.sti')
@@ -27,15 +29,25 @@ function love.load()
 	PixelFont = love.graphics.newFont('assets/fonts/Kenney Pixel.ttf', 50)
 
 	-- camera object
-	Cam = CameraFile()
+	Cam = camera()
+
+	-- tilemaps
+	-- Basement = Tiled('assets/maps/basement.lua')
+	-- OverWorld = Tiled('assets/maps/overWorld.lua')
 end
 
 function love.update(dt)
+	World:update(dt)
+	UpdatePlayer(dt)
+	-- Player.animation:update(dt)
+	-- Heart.animation:update(dt)
 end
 
 function love.draw()
 	love.graphics.setFont(PixelFont)
 	love.graphics.print("this is a font test")
+
+	love.graphics.draw(Player.sprite, Player.x, Player.y)
 end
 
 -- utility function for determing collision

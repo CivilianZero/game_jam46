@@ -20,7 +20,7 @@ gameStates.gameLoop = {
 }
 
 -- local imports
-local sti = require('libraries.Simple-Tiled-Implementation-master.sti')
+local sti = require('libraries.sti.sti')
 
 function love.load()
 	love.graphics.setDefaultFilter("nearest", "nearest")
@@ -34,8 +34,9 @@ function love.load()
 	require('player')
 	require('heart')
 	-- required libraries
-	Anim8 = require('libraries.anim8-master.anim8')
-	local camera = require('libraries.hump-master.camera')
+	Anim8 = require('libraries.anim8.anim8')
+	Talkies = require('libraries.talkies.talkies')
+	local camera = require('libraries.hump.camera')
 
 	-- table for storing save data
 	SaveData = {}
@@ -62,6 +63,11 @@ function love.load()
 	WorldY = 0
 
 	state = gameStates.gameLoop
+
+	-- Talkies config
+	Talkies.font = PixelFont
+	Talkies.talkSound = love.audio.newSource("assets/sounds/typeSound.wav", "static")
+	
 end
 
 function love.update(dt)
@@ -69,6 +75,7 @@ function love.update(dt)
 	if state == gameStates.gameLoop then
 		UpdatePlayer(dt)
 	end
+	Talkies.update(dt)
 	-- Player.animation:update(dt)
 	-- Heart.animation:update(dt)
 end
@@ -76,7 +83,6 @@ end
 function love.draw()
 	love.graphics.setFont(PixelFont)
 	love.graphics.print("Cam: " .. CamX .. ", " .. CamY .. "    World: " .. WorldX .. ", " .. WorldY)
-	
 	Cam:attach()
 	love.graphics.draw(Player.sprite, Player.body:getX(), Player.body:getY())
 	love.graphics.draw(Heart.sprite, 300, 300)
@@ -96,7 +102,7 @@ end
 
 function love.keypressed(key)
 	local binding = state.keys[key]
-  return InputHandler( binding )
+  return InputHandler(binding)
 end
 
 -- utility function for handling input

@@ -1,6 +1,7 @@
 local sti = require('libraries.Simple-Tiled-Implementation-master.sti')
 
 function love.load()
+	love.graphics.setDefaultFilter("nearest", "nearest")
 	-- physics world config
 	World = love.physics.newWorld(0, 0, false)
 	World:setCallbacks(BeginContact, EndContact)
@@ -27,7 +28,7 @@ function love.load()
 	PixelFont = love.graphics.newFont('assets/fonts/Kenney Pixel.ttf', 50)
 
 	-- camera object
-	Cam = camera()
+	Cam = camera(100, 100, 3)
 
 	-- tilemaps
 	-- Basement = sti('assets/maps/basement.lua')
@@ -42,10 +43,10 @@ function love.update(dt)
 end
 
 function love.draw()
-	Cam:attach()
 	love.graphics.setFont(PixelFont)
 	love.graphics.print("this is a font test")
-
+	
+	Cam:attach()
 	love.graphics.draw(Player.sprite, Player.body:getX(), Player.body:getY())
 	Cam:detach()
 end

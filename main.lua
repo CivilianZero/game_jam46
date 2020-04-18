@@ -49,7 +49,14 @@ function love.draw()
 	if Player.itemHeld ~= nil then
 		love.graphics.draw(Player.itemHeld.sprite, love.graphics.getWidth() - 40, love.graphics.getHeight() - 40, nil, 0.9, 0.9, Player.itemHeld.sprite:getWidth()/2, Player.itemHeld:getHeight()/2)
 	end
-	love.graphics.draw(Sprites.inventory, love.graphics.getWidth() - 40, love.graphics.getHeight() - 40, nil, nil, nil, Sprites.inventory:getWidth()/2, Sprites.inventory:getHeight()/2)
+
+	-- example item
+	local inventoryItem = love.graphics.newQuad(0, 408, 16, 16, Sprites.spriteSheet:getDimensions())
+	love.graphics.draw(Sprites.spriteSheet, inventoryItem, love.graphics.getWidth() - 30, love.graphics.getHeight() - 30, nil, 0.75, 0.75, 8, 8)
+	-- love.graphics.draw(Player.itemHeld.sprite, love.graphics.getWidth() - 30, love.graphics.getHeight() - 30, nil, nil, nil, Player.itemHeld.sprite:getWidth()/2, Player.itemHeld.sprite:getWidth()/2)
+	-- draw held item box
+	local itemBox = love.graphics.newQuad(391, 442, 16, 16, Sprites.spriteSheet:getDimensions())
+	love.graphics.draw(Sprites.spriteSheet, itemBox, love.graphics.getWidth() - 30, love.graphics.getHeight() - 30, nil, nil, nil, 8, 8)
 end
 
 -- utility function for determing collision

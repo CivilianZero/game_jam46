@@ -1,10 +1,15 @@
 function love.load()
+	-- physics world config
+	World = love.physics.newWorld(0, 0, false)
+	World:setCallbacks(BeginContact, EndContact)
+
 	-- required files
 	require('show')
+	require('player')
 	-- required libraries
 	Anim8 = require('libraries.anim8-master.anim8')
-	local camera = require('libraries.hump-master.camera')
 	Tiled = require('libraries.Simple-Tiled-Implementation-master.sti')
+	local camera = require('libraries.hump-master.camera')
 
 	-- table for including sprites
 	Sprites = {}
@@ -38,4 +43,11 @@ end
 function CheckCollision(obj1, obj2)
 	local distance = math.sqrt((obj2.y - obj1.y)^2 + (obj2.x - obj1.x)^2)
 	return distance < obj1.size + obj2.size
+end
+
+-- callback functions for physics World
+function BeginContact()
+end
+
+function EndContact()
 end

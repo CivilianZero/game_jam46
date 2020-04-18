@@ -33,6 +33,10 @@ function love.load()
 	-- tilemaps
 	-- Basement = sti('assets/maps/basement.lua')
 	-- OverWorld = sti('assets/maps/overWorld.lua')
+	CamX = ""
+	CamY = ""
+	WorldX = ""
+	WorldY = ""
 end
 
 function love.update(dt)
@@ -44,11 +48,21 @@ end
 
 function love.draw()
 	love.graphics.setFont(PixelFont)
-	love.graphics.print("this is a font test")
-	
+	love.graphics.print("Cam: " .. CamX .. ", " .. CamY .. "    World: " .. WorldX .. ", " .. WorldY)
 	Cam:attach()
 	love.graphics.draw(Player.sprite, Player.body:getX(), Player.body:getY())
 	Cam:detach()
+end
+
+function love.mousepressed(x, y, b, istouch)
+	if b == 1 then
+		CamX, CamY = Cam:cameraCoords(love.mouse.getPosition())
+		WorldX, WorldY = Cam:worldCoords(love.mouse.getPosition())
+		CamX = math.floor(CamX)
+		CamY = math.floor(CamY)
+		WorldX = math.floor(WorldX)
+		WorldY = math.floor(WorldY)
+	end
 end
 
 -- utility function for determing collision

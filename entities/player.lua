@@ -1,12 +1,17 @@
 Player = {}
 
-Player.x = 176
-Player.y = 576
-World:add(Player, Player.x, Player.y, 10, 16)
-Player.goalX = Player.x
-Player.goalY = Player.y
-Player.speed = 30
-Player.sprite = Sprites.player
+function Player:init(map)
+	for i,spawn in pairs(map.layers["Spawn Point"].objects) do
+		Player.x = spawn.x
+		Player.y = spawn.y
+	end
+	World:add(Player, Player.x, Player.y, 10, 16)
+	Player.goalX = Player.x
+	Player.goalY = Player.y
+	Player.speed = 30
+	Player.sprite = Sprites.player
+	Player.direction = 1 -- 1 is up, 2 is right, 3 is down, 4 is left
+end
 
 local function keyDown(key)
 	return love.keyboard.isDown(key)
@@ -29,15 +34,19 @@ function Player:changeVelocity(dt)
 	haltMovement()
 	if keyDown("w") then
 		Player.goalY = Player.y - Player.speed * dt
+		Player.direction = 1
 	end
 	if keyDown("s") then
 		Player.goalY = Player.y + dt * Player.speed
+		Player.direction = 3
 	end
 	if keyDown("a") then
 		Player.goalX = Player.x - dt * Player.speed
+		Player.direction = 4
 	end
 	if keyDown("d") then
 		Player.goalX = Player.x + dt * Player.speed
+		Player.direction = 2
 	end
 end
 

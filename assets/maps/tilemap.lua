@@ -8,8 +8,8 @@ return {
   height = 400,
   tilewidth = 16,
   tileheight = 16,
-  nextlayerid = 6,
-  nextobjectid = 1,
+  nextlayerid = 7,
+  nextobjectid = 2,
   properties = {},
   tilesets = {
     {
@@ -460,7 +460,7 @@ return {
     {
       type = "objectgroup",
       id = 2,
-      name = "Walls",
+      name = "Collision",
       visible = true,
       opacity = 1,
       offsetx = 0,
@@ -497,6 +497,32 @@ return {
       type = "objectgroup",
       id = 5,
       name = "Spawn Point",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {
+        {
+          id = 1,
+          name = "Player Spawn Point",
+          type = "",
+          shape = "rectangle",
+          x = 7408,
+          y = 3872,
+          width = 16,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      id = 6,
+      name = "Triggers",
       visible = true,
       opacity = 1,
       offsetx = 0,

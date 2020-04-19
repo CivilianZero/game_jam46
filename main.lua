@@ -86,10 +86,6 @@ function love.load()
 	-- TiledMap = Tiled('assets/maps/TiledMap.lua')
 	PixelFont = love.graphics.newFont('assets/fonts/Kenney Pixel.ttf', 40)
 
-	-- camera object
-	Cam = camera(180, 532, 3)
-
-
 	-- tilemaps
 	-- Basement = sti('assets/maps/basement.lua')
 	Overworld = sti('assets/maps/tilemap.lua')
@@ -123,14 +119,18 @@ function love.load()
 
 	-- create collision objects from tilemaps
 	spawnCollisionObjects(CurrentMap)
-	-- use layer objects to spawn interactables
+	-- use layer objects to spawn everything
+	Player:init(CurrentMap)
 	Monsters:init(CurrentMap)
 	Triggers:init(CurrentMap)
 	Doors:init(CurrentMap)
+
+	-- camera object
+	Cam = camera(Player.x, Player.y, 3)
 end
 
 function love.update(dt)
-	Cam:lockPosition(Player.x, Player.y - 50, Cam.smooth.damped(2))
+	Cam:lockPosition(Player.x, Player.y, Cam.smooth.damped(1))
 	CurrentMap:update(dt)
 	if state == gameStates.gameLoop then
 		Player:update(dt)

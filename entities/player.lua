@@ -9,7 +9,7 @@ function Player:init(map)
 	Player.goalX = Player.x
 	Player.goalY = Player.y
 	Player.speed = 30
-	Player.direction = {x = 0, y = 0}
+	Player.direction = {x = 1, y = 0}
 	Player.isMoving = false
 	Player.animation = LoveAnimation.new('assets/sprites/playerAnimation.lua')
 end
@@ -19,7 +19,6 @@ local function keyDown(key)
 end
 
 function Player:changeVelocity(dt)
-	Player.isMoving = false
 	if keyDown("w") then
 		Player.goalY = Player.y - Player.speed * dt
 		Player.direction.y = -1
@@ -50,6 +49,20 @@ function Player:changeVelocity(dt)
 end
 
 function Player:attack()
+	Player.isMoving = true
+	if Player.direction.y == -1 then
+		Player.animation:setState("attackUp")
+	end
+	if Player.direction.x == 1 and Player.direction.y == 0 then
+		Player.animation:setState("attackRight")
+	end
+	if Player.direction.x == -1 and Player.direction.y == 0 then
+		Player.animation:setState("attackLeft")
+	end
+	if Player.direction.y == 1 then
+		Player.animation:setState("attackDown")
+	end
+	ObjectTest = "State: "..Player.animation:getCurrentState()
 end
 
 function Player:moveColliding(dt)
@@ -58,7 +71,11 @@ function Player:moveColliding(dt)
 end
 
 local function changeState(state)
-	if Player.animation:getCurrentState() ~= state then
+	if Player.animation:getCurrentState() ~= state 
+	and Player.animation:getCurrentState() ~= "attackUp" 
+	and Player.animation:getCurrentState() ~= "attackDown" 
+	and Player.animation:getCurrentState() ~= "attackRight"
+	and Player.animation:getCurrentState() ~= "attackLeft" then
 		Player.animation:setState(state)
 	end 
 end

@@ -38,41 +38,42 @@ return {
 			nextState = "upRight",
 			switchDelay = 0.4
 		},
+		-- see about getting attack right and left to swing higher
 		attackRight = {
 			frameCount = 4,
 			offsetX = 0,
 			offsetY = 72,
-			frameW = 16,
+			frameW = 18,
 			frameH = 16,
-			nextState = "faceRight",
-			switchDelay = 0.1
+			nextState = "right",
+			switchDelay = 0.05
 		},
 		attackLeft = {
 			frameCount = 4,
 			offsetX = 0,
 			offsetY = 90,
-			frameW = 16,
+			frameW = 18,
 			frameH = 16,
-			nextState = "faceLeft",
-			switchDelay = 0.1
-		},
-		attackUp = {
-			frameCount = 3,
-			offsetX = 0,
-			offsetY = 108,
-			frameW = 16,
-			frameH = 16,
-			nextState = "faceUpRight",
-			switchDelay = 0.1
+			nextState = "left",
+			switchDelay = 0.05
 		},
 		attackDown = {
 			frameCount = 3,
 			offsetX = 0,
-			offsetY = 126,
-			frameW = 16,
+			offsetY = 108,
+			frameW = 18,
 			frameH = 16,
-			nextState = "faceLeft",
-			switchDelay = 0.1
+			nextState = "right",
+			switchDelay = 0.05
+		},
+		attackUp = {
+			frameCount = 3,
+			offsetX = 0,
+			offsetY = 126,
+			frameW = 18,
+			frameH = 16,
+			nextState = "upRight",
+			switchDelay = 0.05
 		},
 	}
 }

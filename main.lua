@@ -13,9 +13,11 @@ gameStates.menu = {
 gameStates.gameLoop = {
 	bindings = {
 		openMenu = function() state = gameStates.menu end,
+		attack = function() Player:attack() end
 	},
 	keys = {
 		escape = "openMenu",
+		space = "attack"
 	}
 }
 gameStates.dialog = {

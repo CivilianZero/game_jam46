@@ -66,6 +66,7 @@ function love.load()
 	-- camera object
 	Cam = camera(180, 532, 3)
 
+
 	-- tilemaps
 	-- Basement = sti('assets/maps/basement.lua')
 	Overworld = sti('assets/maps/tilemap.lua')

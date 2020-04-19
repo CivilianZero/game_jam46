@@ -1,7 +1,7 @@
 Triggers = {}
 TriggerFunctions = {}
 
-TriggerFunctions.Heart = function()
+function TriggerFunctions:Heart()
 	-- handle whether heart wants blood, what kind, whether you have it, etc.
 	-- probably best to pass this off to Heart.lua
 	return "Placeholder"

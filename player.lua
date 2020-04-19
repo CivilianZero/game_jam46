@@ -2,7 +2,7 @@ Player = {}
 
 Player.x = 176
 Player.y = 576
-World:add(Player, Player.x, Player.y, 16, 16)
+World:add(Player, Player.x, Player.y, 10, 16)
 Player.goalX = Player.x
 Player.goalY = Player.y
 Player.speed = 30
@@ -11,14 +11,17 @@ Player.speed = 30
 Player.sprite = Sprites.player
 
 function Player:changeVelocity(dt)
-	HaltMovement()
+	-- HaltMovement()
 	if love.keyboard.isDown("w") then
 		Player.goalY = Player.y - Player.speed * dt
-	elseif love.keyboard.isDown("s") then
+	end
+	if love.keyboard.isDown("s") then
 		Player.goalY = Player.y + dt * Player.speed
-	elseif love.keyboard.isDown("a") then
+	end
+	if love.keyboard.isDown("a") then
 		Player.goalX = Player.x - dt * Player.speed
-	elseif love.keyboard.isDown("d") then
+	end
+	if love.keyboard.isDown("d") then
 		Player.goalX = Player.x + dt * Player.speed
 	end
 end

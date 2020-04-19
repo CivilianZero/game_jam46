@@ -1,5 +1,10 @@
-Heart = {}
+Heart = {
+	x = 184,
+	y = 480,
+	animation = LoveAnimation.new('assets/sprites/heartAnimation.lua')
+}
 
-Heart.x = 184
-Heart.y = 480
-Heart.sprite = Sprites.heart
+function Heart:update(dt)
+	Heart.animation:setPosition(Heart.x, Heart.y)
+	Heart.animation:update(dt)
+end

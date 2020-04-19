@@ -1,13 +1,14 @@
 Triggers = {}
 TriggerFunctions = {}
 
-function TriggerFunctions:Heart()
+-- callback functions for triggers
+function TriggerFunctions:heart()
 	-- handle whether heart wants blood, what kind, whether you have it, etc.
 	-- probably best to pass this off to Heart.lua
 	return "Placeholder"
 end
 
-function GenerateTriggers(map)
+function Triggers:init(map)
 	for i,t in pairs(map.layers["Triggers"].objects) do
 		local trigger = {}
 		World:add(trigger, t.x, t.y, t.width, t.height)
@@ -17,7 +18,7 @@ function GenerateTriggers(map)
 		trigger.height = t.height
 		trigger.type = "Trigger"
 		trigger.trigger = TriggerFunctions[t.properties.trigger]
-		
+
 		table.insert(Triggers, trigger)
 	end
 end

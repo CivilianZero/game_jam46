@@ -30,7 +30,31 @@ gameStates.dialog = {
 -- local imports
 local sti = require('libraries.sti.sti')
 
+-- local functions
+
+-- creates collision objects
+local function spawnCollisionObjects(map)
+	for i,obj in pairs(map.layers["Collision"].objects) do
+		local wall = {}
+		wall.type = "Wall"
+		wall.x = obj.x
+		wall.y = obj.y
+		wall.width = obj.width
+		wall.height = obj.height
+		World:add(wall, wall.x, wall.y, wall.width, wall.height)
+	end
+end
+
+-- utility function for handling input
+local function inputHandler(input)
+	local action = state.bindings[input]
+	if action then
+		return action()
+	end
+end
+
 function love.load()
+	-- set scaling filter to accomodate for camera zoom
 	love.graphics.setDefaultFilter("nearest", "nearest")
 
 	-- required libraries
@@ -44,12 +68,12 @@ function love.load()
 	World = bump.newWorld(16)
 
 	-- required files
-	require('sprites')
-	require('player')
-	require('heart')
-	require('monster')
-	require('doors')
-	require('triggers')
+	require('objects.sprites')
+	require('entities.player')
+	require('entities.heart')
+	require('entities.monster')
+	require('objects.doors')
+	require('objects.triggers')
 
 	-- table for storing save data
 	SaveData = {}
@@ -77,9 +101,6 @@ function love.load()
 	-- debugging for collision
 	ObjectTest = "Test: "
 
-	-- creare collision objects for tilemaps
-	SpawnCollisionObjects(CurrentMap)
-
 	-- coordinates for debugging camera and player position
 	CamX = 0
 	CamY = 0
@@ -101,8 +122,12 @@ function love.load()
 
 	Talkies.say("The Heart in your Basement", "...feed me", {textSpeed = "slow", onstart = function() OnStart() end, oncomplete = function() OnComplete() end})
 
-	SpawnMonsters(CurrentMap)
-	GenerateTriggers(CurrentMap)
+	-- create collision objects from tilemaps
+	spawnCollisionObjects(CurrentMap)
+	-- use layer objects to spawn interactables
+	Monsters:init(CurrentMap)
+	Triggers:init(CurrentMap)
+	Doors:init(CurrentMap)
 end
 
 function love.update(dt)
@@ -110,6 +135,7 @@ function love.update(dt)
 	CurrentMap:update(dt)
 	if state == gameStates.gameLoop then
 		Player:update(dt)
+		Monsters:update(dt)
 	end
 	Talkies.update(dt)
 	-- Player.animation:update(dt)
@@ -151,28 +177,7 @@ end
 
 function love.keypressed(key)
 	local binding = state.keys[key]
-  InputHandler(binding)
-end
-
--- utility function for handling input
-function InputHandler(input)
-	local action = state.bindings[input]
-	if action then
-		return action()
-	end
-end
-
--- creates collision objects
-function SpawnCollisionObjects(map)
-	for i,obj in pairs(map.layers["Collision"].objects) do
-		local wall = {}
-		wall.type = "Wall"
-		wall.x = obj.x
-		wall.y = obj.y
-		wall.width = obj.width
-		wall.height = obj.height
-		World:add(wall, wall.x, wall.y, wall.width, wall.height)
-	end
+  inputHandler(binding)
 end
 
 -- callback functions for Talkies

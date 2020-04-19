@@ -1,6 +1,6 @@
 Monsters = {}
 
-function SpawnMonsters(map)
+function Monsters:init(map)
 	for i,obj in pairs(map.layers["Monsters"].objects) do
 		local monster = {}
 		World:add(monster, obj.x, obj.y, obj.width, obj.height)
@@ -17,7 +17,7 @@ function SpawnMonsters(map)
 	end
 end
 
-function MonstersUpdate(dt)
+function Monsters:update(dt)
 	for i=#Monsters, 1, -1 do
 		local m = Monsters[i]
 		if m.dead then

@@ -1,7 +1,7 @@
 Doors = {}
 
 -- used for generating new doors from tilemap object layer, also used for stairs, ladders, etc.
-function GenerateDoor(map)
+function Doors:init(map)
 	for i,d in pairs(map.layers["Doors"].objects) do
 		local door = {}
 		door.x = d.x

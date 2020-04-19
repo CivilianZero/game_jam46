@@ -8,7 +8,7 @@ return {
   height = 40,
   tilewidth = 16,
   tileheight = 16,
-  nextlayerid = 5,
+  nextlayerid = 6,
   nextobjectid = 9,
   properties = {},
   tilesets = {
@@ -198,10 +198,22 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["trigger"] = "Heart"
+            ["trigger"] = "heart"
           }
         }
       }
+    },
+    {
+      type = "objectgroup",
+      id = 5,
+      name = "Doors",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {}
     }
   }
 }

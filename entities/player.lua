@@ -10,28 +10,42 @@ Player.speed = 30
 -- Player.animation = Anim8.newAnimation(Player.grid('1-2', 1, '1-2', 2, '1-2', 3, '1-2', 4), 0.2)
 Player.sprite = Sprites.player
 
+local function keyDown(key)
+	return love.keyboard.isDown(key)
+end
+
+local function haltMovement()
+	if keyDown("w") and keyDown("s")
+	or keyDown("w") and keyDown("a")
+	or keyDown("w") and keyDown("d")
+	or keyDown("a") and keyDown("d")
+	or keyDown("s") and keyDown("a")
+	or keyDown("s") and keyDown("d") then
+		Player.speed = 0
+	else
+		Player.speed = 30
+	end
+end
+
 function Player:changeVelocity(dt)
-	-- HaltMovement()
-	if love.keyboard.isDown("w") then
+	haltMovement()
+	if keyDown("w") then
 		Player.goalY = Player.y - Player.speed * dt
 	end
-	if love.keyboard.isDown("s") then
+	if keyDown("s") then
 		Player.goalY = Player.y + dt * Player.speed
 	end
-	if love.keyboard.isDown("a") then
+	if keyDown("a") then
 		Player.goalX = Player.x - dt * Player.speed
 	end
-	if love.keyboard.isDown("d") then
+	if keyDown("d") then
 		Player.goalX = Player.x + dt * Player.speed
 	end
 end
 
 function Player:moveColliding(dt)
-	local actualX, actualY, cols, len = World:move(Player, Player.goalX, Player.goalY, self.filter)
+	local actualX, actualY = World:move(Player, Player.goalX, Player.goalY, self.filter)
 	Player.x, Player.y = actualX, actualY
-	-- for i=1, len do
-	-- 	local col = cols[i]
-	-- end
 end
 
 function Player:filter(other)
@@ -76,19 +90,4 @@ end
 -- 	end
 -- end
 
-function HaltMovement()
-	local function keyDown(key)
-		return love.keyboard.isDown(key)
-	end
-
-	if keyDown("w") and keyDown("s")
-	or keyDown("w") and keyDown("a")
-	or keyDown("w") and keyDown("d")
-	or keyDown("a") and keyDown("d")
-	or keyDown("s") and keyDown("a")
-	or keyDown("s") and keyDown("d") then
-		Player.speed = 0
-	else
-		Player.speed = 30
-	end
-end
+return Player

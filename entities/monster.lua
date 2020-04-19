@@ -8,8 +8,8 @@ function Monsters:init(map)
 			width = obj.width,
 			height = obj.height,
 			type = "Monster",
-			hasBlood = true,
-			bloodType = math.floor(math.random(1, 4))
+			isDead = false,
+			animation = LoveAnimation.new('assets/sprites/monsterAnimation.lua')
 		}
 		World:add(monster, obj.x, obj.y, obj.width, obj.height)
 		table.insert(Monsters, monster)
@@ -17,10 +17,15 @@ function Monsters:init(map)
 end
 
 function Monsters:update(dt)
+	for i,m in ipairs(Monsters) do
+		m.animation:setPosition(m.x, m.y)
+		m.animation:update(dt)
+	end
 	for i=#Monsters, 1, -1 do
 		local m = Monsters[i]
 		if m.dead then
 			table.remove(Monsters, i)
+			World:remove(m)
 		end
 	end
 end

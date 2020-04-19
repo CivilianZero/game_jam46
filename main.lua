@@ -151,12 +151,14 @@ function love.draw()
 
 	love.graphics.setColor(1, 1, 1)
 	CurrentMap:drawLayer(CurrentMap.layers["Tilemap"])
-	-- love.graphics.draw(Player.sprite, Player.x, Player.y, nil, nil, nil, 2.5, nil)
+	-- love.graphics.setColor(1, 0, 0)
+	-- love.graphics.rectangle("fill", Player.x, Player.y, 10, 14)
 	Player.animation:draw()
 	love.graphics.draw(Heart.sprite, Heart.x, Heart.y, nil, .5, .5, Heart.sprite:getWidth()/2, Heart.sprite:getHeight()/2)
 	for i,m in ipairs(Monsters) do
-		love.graphics.setColor(0, 0, 1)
-		love.graphics.rectangle("fill", m.x, m.y, m.width, m.height)
+		m.animation:draw()
+		-- love.graphics.setColor(0, 0, 1)
+		-- love.graphics.rectangle("fill", m.x, m.y, m.width, m.height)
 	end
 	
 	Cam:detach()

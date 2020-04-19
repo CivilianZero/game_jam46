@@ -5,7 +5,7 @@ function Player:init(map)
 		Player.x = spawn.x
 		Player.y = spawn.y
 	end
-	World:add(Player, Player.x, Player.y, 10, 16)
+	World:add(Player, Player.x, Player.y, 10, 14)
 	Player.goalX = Player.x
 	Player.goalY = Player.y
 	Player.speed = 30
@@ -85,7 +85,7 @@ function Player:filter(other)
 	if type == "Wall" then return "slide"
 	elseif type == "Monster" then return "slide"
 	elseif type == "Trigger" then return "cross"
-	elseif type == "Door" then return "cross"
+	elseif type == "Door" then return "touch"
 	end
 end
 

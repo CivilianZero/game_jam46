@@ -74,6 +74,6 @@ return {
 			frameH = 16,
 			nextState = "upRight",
 			switchDelay = 0.05
-		},
+		}
 	}
 }

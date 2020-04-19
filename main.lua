@@ -100,6 +100,7 @@ function love.load()
 end
 
 function love.update(dt)
+	Cam:lockPosition(Player.x, Player.y - 50, Cam.smooth.damped(2))
 	CurrentMap:update(dt)
 	if state == gameStates.gameLoop then
 		Player:update(dt)

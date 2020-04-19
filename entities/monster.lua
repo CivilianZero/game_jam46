@@ -2,17 +2,18 @@ Monsters = {}
 
 function Monsters:init(map)
 	for i,obj in pairs(map.layers["Monsters"].objects) do
-		local monster = {}
+		local monster = {
+			x = obj.x,
+			y = obj.y,
+			width = obj.width,
+			height = obj.height,
+			type = "Monster",
+			hasBlood = true,
+			bloodType = math.floor(math.random(1, 4)),
+			-- grid = Anim8.newGrid(16, 16, 32, 32)
+			-- animation = Anim8.newAnimation(monster.grid('1-2',1), 0.5)
+		}
 		World:add(monster, obj.x, obj.y, obj.width, obj.height)
-		monster.x = obj.x
-		monster.y = obj.y
-		monster.width = obj.width
-		monster.height = obj.height
-		monster.type = "Monster"
-		monster.hasBlood = true
-		monster.bloodType = math.floor(math.random(1, 4))
-		-- monster.grid = Anim8.newGrid(16, 16, 32, 32)
-		-- monster.animation = Anim8.newAnimation(monster.grid('1-2',1), 0.5)
 		table.insert(Monsters, monster)
 	end
 end

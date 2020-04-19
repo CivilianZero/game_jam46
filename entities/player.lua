@@ -6,8 +6,6 @@ World:add(Player, Player.x, Player.y, 10, 16)
 Player.goalX = Player.x
 Player.goalY = Player.y
 Player.speed = 30
--- Player.grid = Anim8.newGrid(16, 16, 32, 64)
--- Player.animation = Anim8.newAnimation(Player.grid('1-2', 1, '1-2', 2, '1-2', 3, '1-2', 4), 0.2)
 Player.sprite = Sprites.player
 
 local function keyDown(key)

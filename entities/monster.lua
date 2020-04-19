@@ -9,9 +9,7 @@ function Monsters:init(map)
 			height = obj.height,
 			type = "Monster",
 			hasBlood = true,
-			bloodType = math.floor(math.random(1, 4)),
-			-- grid = Anim8.newGrid(16, 16, 32, 32)
-			-- animation = Anim8.newAnimation(monster.grid('1-2',1), 0.5)
+			bloodType = math.floor(math.random(1, 4))
 		}
 		World:add(monster, obj.x, obj.y, obj.width, obj.height)
 		table.insert(Monsters, monster)

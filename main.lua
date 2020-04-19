@@ -58,7 +58,6 @@ function love.load()
 	love.graphics.setDefaultFilter("nearest", "nearest")
 
 	-- required libraries
-	Anim8 = require('libraries.anim8.anim8')
 	Talkies = require('libraries.talkies.talkies')
 	local camera = require('libraries.hump.camera')
 	local bump = require('libraries.bump.bump')

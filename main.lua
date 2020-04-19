@@ -61,7 +61,10 @@ function love.load()
 	Talkies = require('libraries.talkies.talkies')
 	local camera = require('libraries.hump.camera')
 	local bump = require('libraries.bump.bump')
+	require("libraries.loveAnimation.animation")
 	require('libraries.show')
+
+	local anim = LoveAnimation.new("assets/sprites/playerAnimation.lua")
 
 	-- physics world config
 	World = bump.newWorld(16)
@@ -137,8 +140,6 @@ function love.update(dt)
 		Monsters:update(dt)
 	end
 	Talkies.update(dt)
-	-- Player.animation:update(dt)
-	-- Heart.animation:update(dt)
 end
 
 function love.draw()
@@ -148,7 +149,8 @@ function love.draw()
 
 	love.graphics.setColor(1, 1, 1)
 	CurrentMap:drawLayer(CurrentMap.layers["Tilemap"])
-	love.graphics.draw(Player.sprite, Player.x, Player.y, nil, nil, nil, 2.5, nil)
+	-- love.graphics.draw(Player.sprite, Player.x, Player.y, nil, nil, nil, 2.5, nil)
+	Player.animation:draw()
 	love.graphics.draw(Heart.sprite, Heart.x, Heart.y, nil, .5, .5, Heart.sprite:getWidth()/2, Heart.sprite:getHeight()/2)
 	for i,m in ipairs(Monsters) do
 		love.graphics.setColor(0, 0, 1)

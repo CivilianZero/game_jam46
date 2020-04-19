@@ -9,8 +9,8 @@ function Player:init(map)
 	Player.goalX = Player.x
 	Player.goalY = Player.y
 	Player.speed = 30
-	Player.sprite = Sprites.player
-	Player.direction = 1 -- 1 is up, 2 is right, 3 is down, 4 is left
+	Player.direction = {x = 0, y = 0}
+	Player.animation = LoveAnimation.new('assets/sprites/playerAnimation.lua')
 end
 
 local function keyDown(key)
@@ -31,23 +31,26 @@ local function haltMovement()
 end
 
 function Player:changeVelocity(dt)
-	haltMovement()
+	-- haltMovement()
 	if keyDown("w") then
 		Player.goalY = Player.y - Player.speed * dt
-		Player.direction = 1
+		Player.direction.y = -1
 	end
 	if keyDown("s") then
 		Player.goalY = Player.y + dt * Player.speed
-		Player.direction = 3
+		Player.direction.y = 1
 	end
 	if keyDown("a") then
 		Player.goalX = Player.x - dt * Player.speed
-		Player.direction = 4
+		Player.direction.x = -1
 	end
 	if keyDown("d") then
 		Player.goalX = Player.x + dt * Player.speed
-		Player.direction = 2
+		Player.direction.x = 1
 	end
+end
+
+function Player:attack()
 end
 
 function Player:moveColliding(dt)
@@ -78,6 +81,8 @@ end
 function Player:update(dt)
 	Player:changeVelocity(dt)
 	Player:moveColliding(dt)
+	Player.animation:setPosition(Player.x, Player.y)
+	Player.animation:update(dt)
 end
 
 -- not sure of animation/sprite implementation, depends on sprite sheet

@@ -4,10 +4,10 @@
 [project]
 # Author information. If you have a company, then use that in this
 # field instead.
-authors = "Developer Name"
+authors = "Kevin Smith and Jordan Carroll"
 
 # A description of your game. Not used in all builds.
-description = "Your description here."
+description = "Keep the Weird Heart in your basement alive."
 
 # An email to contact for support or more information. Not used
 # in all builds.
@@ -48,6 +48,7 @@ output_directory = "release"
 # expression, which when matched, will exclude the matched file or
 # directory from the build.
 ignore_list = [
+		".vscode",
     # Git
     "^.git.*",
 

@@ -8,8 +8,8 @@ return {
   height = 40,
   tilewidth = 16,
   tileheight = 16,
-  nextlayerid = 4,
-  nextobjectid = 8,
+  nextlayerid = 5,
+  nextobjectid = 9,
   properties = {},
   tilesets = {
     {
@@ -166,12 +166,40 @@ return {
           type = "Monster",
           shape = "rectangle",
           x = 192,
-          y = 544,
+          y = 576,
           width = 16,
           height = 16,
           rotation = 0,
           visible = true,
           properties = {}
+        }
+      }
+    },
+    {
+      type = "objectgroup",
+      id = 4,
+      name = "Triggers",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {
+        {
+          id = 8,
+          name = "Talk to Heart",
+          type = "Trigger",
+          shape = "rectangle",
+          x = 160,
+          y = 528,
+          width = 48,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["trigger"] = "Heart"
+          }
         }
       }
     }

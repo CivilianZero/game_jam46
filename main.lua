@@ -48,6 +48,8 @@ function love.load()
 	require('player')
 	require('heart')
 	require('monster')
+	require('doors')
+	require('triggers')
 
 	-- table for storing save data
 	SaveData = {}
@@ -66,15 +68,16 @@ function love.load()
 
 	-- tilemaps
 	-- Basement = sti('assets/maps/basement.lua')
-	OverWorld = sti('assets/maps/tilemap.lua')
+	Overworld = sti('assets/maps/tilemap.lua')
+
+	--global variable for current tilemap
+	CurrentMap = Overworld
 	
 	-- debugging for collision
 	ObjectTest = "Test: "
 
 	-- creare collision objects for tilemaps
-	for i,obj in pairs(OverWorld.layers["Collision"].objects) do
-		SpawnCollisionObjects(obj.x, obj.y, obj.width, obj.height)
-	end
+	SpawnCollisionObjects(CurrentMap)
 
 	-- coordinates for debugging camera and player position
 	CamX = 0
@@ -91,11 +94,12 @@ function love.load()
 
 	Talkies.say("The Heart in your Basement", "...feed me", {textSpeed = "slow", onstart = function() OnStart() end, oncomplete = function() OnComplete() end})
 
-	SpawnMonsters()
+	SpawnMonsters(CurrentMap)
+	GenerateTriggers(CurrentMap)
 end
 
 function love.update(dt)
-	OverWorld:update(dt)
+	CurrentMap:update(dt)
 	if state == gameStates.gameLoop then
 		Player:update(dt)
 	end
@@ -110,7 +114,7 @@ function love.draw()
 	Cam:attach()
 
 	love.graphics.setColor(1, 1, 1)
-	OverWorld:drawLayer(OverWorld.layers["Tilemap"])
+	CurrentMap:drawLayer(CurrentMap.layers["Tilemap"])
 	love.graphics.draw(Player.sprite, Player.x, Player.y, nil, nil, nil, 2.5, nil)
 	love.graphics.draw(Heart.sprite, Heart.x, Heart.y, nil, .5, .5, Heart.sprite:getWidth()/2, Heart.sprite:getHeight()/2)
 	for i,m in ipairs(Monsters) do
@@ -151,14 +155,16 @@ function InputHandler(input)
 end
 
 -- creates collision objects
-function SpawnCollisionObjects(x, y, w, h)
-	local wall = {}
-	wall.name = "Wall"
-	wall.x = x
-	wall.y = y
-	wall.width = w
-	wall.height = h
-	World:add(wall, x, y, w, h)
+function SpawnCollisionObjects(map)
+	for i,obj in pairs(map.layers["Collision"].objects) do
+		local wall = {}
+		wall.type = "Wall"
+		wall.x = obj.x
+		wall.y = obj.y
+		wall.width = obj.width
+		wall.height = obj.height
+		World:add(wall, wall.x, wall.y, wall.width, wall.height)
+	end
 end
 
 -- callback functions for Talkies

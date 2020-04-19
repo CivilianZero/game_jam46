@@ -6,7 +6,7 @@ World:add(Player, Player.x, Player.y, 16, 16)
 Player.goalX = Player.x
 Player.goalY = Player.y
 Player.speed = 30
--- Player.grid = Anim8.newGrid(32, 32, 128, 64)
+-- Player.grid = Anim8.newGrid(16, 16, 32, 64)
 -- Player.animation = Anim8.newAnimation(Player.grid('1-2', 1, '1-2', 2, '1-2', 3, '1-2', 4), 0.2)
 Player.sprite = Sprites.player
 
@@ -32,9 +32,9 @@ function Player:moveColliding(dt)
 end
 
 function Player:filter(other)
-	local type = other.name
-	if type == "Wall" then return "slide" end
-	if type == "Monster" then
+	local type = other.type
+	if type == "Wall" then return "slide"
+	elseif type == "Monster" then
 		if other.hasBlood then
 			Talkies.say("Creepy Monster", "Here, have some blood.", {textSpeed = "slow", onstart = function() OnStart() end})
 			Talkies.say("", "You got some weird blood!", {oncomplete = function() OnComplete() end})
@@ -44,6 +44,10 @@ function Player:filter(other)
 		other.hasBlood = false
 		Player.goalX = Player.x - 1
 		return "slide"
+	elseif type == "Trigger" then
+		return "cross"
+	elseif type == "Door" then
+		return "cross"
 	end
 end
 

@@ -412,7 +412,7 @@
  <objectgroup id="3" name="Doors"/>
  <objectgroup id="4" name="Monsters"/>
  <objectgroup id="5" name="Spawn Point">
-  <object id="1" name="Player Spawn Point" x="7408" y="3872" width="16" height="16"/>
+  <object id="1" name="Player Spawn Point" x="7552" y="3184" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="6" name="Triggers"/>
 </map>

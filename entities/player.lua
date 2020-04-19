@@ -10,6 +10,7 @@ function Player:init(map)
 	Player.goalY = Player.y
 	Player.speed = 30
 	Player.direction = {x = 0, y = 0}
+	Player.isMoving = false
 	Player.animation = LoveAnimation.new('assets/sprites/playerAnimation.lua')
 end
 
@@ -17,36 +18,34 @@ local function keyDown(key)
 	return love.keyboard.isDown(key)
 end
 
-local function haltMovement()
-	if keyDown("w") and keyDown("s")
-	or keyDown("w") and keyDown("a")
-	or keyDown("w") and keyDown("d")
-	or keyDown("a") and keyDown("d")
-	or keyDown("s") and keyDown("a")
-	or keyDown("s") and keyDown("d") then
-		Player.speed = 0
-	else
-		Player.speed = 30
-	end
-end
-
 function Player:changeVelocity(dt)
-	-- haltMovement()
+	Player.isMoving = false
 	if keyDown("w") then
 		Player.goalY = Player.y - Player.speed * dt
 		Player.direction.y = -1
+		Player.isMoving = true
 	end
 	if keyDown("s") then
 		Player.goalY = Player.y + dt * Player.speed
 		Player.direction.y = 1
+		Player.isMoving = true
 	end
 	if keyDown("a") then
 		Player.goalX = Player.x - dt * Player.speed
-		Player.direction.x = -1
+		Player.direction.x , Player.direction.y = -1, 0
+		Player.isMoving = true
 	end
 	if keyDown("d") then
 		Player.goalX = Player.x + dt * Player.speed
-		Player.direction.x = 1
+		Player.direction.x, Player.direction.y = 1, 0
+		Player.isMoving = true
+	end
+
+	if keyDown("a") and keyDown("w") then
+		Player.direction.x, Player.direction.y = -1, -1
+	end
+	if keyDown("d") and keyDown("w") then
+		Player.direction.x, Player.direction.y = 1, -1
 	end
 end
 
@@ -58,31 +57,51 @@ function Player:moveColliding(dt)
 	Player.x, Player.y = actualX, actualY
 end
 
+local function changeState(state)
+	if Player.animation:getCurrentState() ~= state then
+		Player.animation:setState(state)
+	end 
+end
+
 function Player:filter(other)
 	local type = other.type
 	if type == "Wall" then return "slide"
-	elseif type == "Monster" then
-		if other.hasBlood then
-			Talkies.say("Creepy Monster", "Here, have some blood.", {textSpeed = "slow", onstart = function() OnStart() end})
-			Talkies.say("", "You got some weird blood!", {oncomplete = function() OnComplete() end})
-		else
-			Talkies.say("Creepy Monster", "I will not let you drain me dry!", {onstart = function() OnStart() end, oncomplete = function() OnComplete() end})
-		end
-		other.hasBlood = false
-		Player.goalX = Player.x - 1
-		return "slide"
-	elseif type == "Trigger" then
-		return "cross"
-	elseif type == "Door" then
-		return "cross"
+	elseif type == "Monster" then return "slide"
+	elseif type == "Trigger" then return "cross"
+	elseif type == "Door" then return "cross"
 	end
+end
+
+function Player:handleAnimation(dt)
+	if Player.direction.y == -1 then
+		if Player.direction.x > -1 then
+			changeState("upRight")
+		else
+			changeState("upLeft")
+		end
+	else
+		if Player.direction.x == 1 then
+			changeState("right")
+		elseif Player.direction.x == -1 then
+			changeState("left")
+		end
+	end
+
+	if Player.isMoving then
+		Player.animation:unpause()
+	else
+		Player.animation:pause()
+	end
+
+	Player.animation:setPosition(Player.x, Player.y)
+	Player.animation:update(dt)
 end
 
 function Player:update(dt)
 	Player:changeVelocity(dt)
 	Player:moveColliding(dt)
-	Player.animation:setPosition(Player.x, Player.y)
-	Player.animation:update(dt)
+	Player:handleAnimation(dt)
+	ObjectTest ="X: "..Player.direction.x.." Y: "..Player.direction.y.." State: "..Player.animation:getCurrentState()
 end
 
 -- not sure of animation/sprite implementation, depends on sprite sheet

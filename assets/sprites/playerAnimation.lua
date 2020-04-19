@@ -1,83 +1,47 @@
 return {
 	imageSrc = "assets/sprites/character_sheet.png",
-	defaultState = "faceRight",
+	defaultState = "right",
 	states = {
-		faceRight = {
-			frameCount = 1,
-			offsetX = 0,
-			offsetY = 0,
-			frameH = 16,
-			frameW = 16,
-			nextState = "faceRight",
-			switchDelay = 0.1
-		},
-		faceLeft = {
-			frameCount = 1,
-			offsetX = 0,
-			offsetY = 16,
-			frameW = 16,
-			frameH = 16,
-			nextState = "faceLeft",
-			switchDelay = 0.1
-		},
-		faceUpRight = {
-			frameCount = 2,
-			offsetX = 0,
-			offsetY = 48,
-			frameW = 16,
-			frameH = 16,
-			nextState = "faceUpRight",
-			switchDelay = 0.1
-		},
-		faceUpLeft = {
-			frameCount = 1,
-			offsetX = 0,
-			offsetY = 32,
-			frameW = 16,
-			frameH = 16,
-			nextState = "faceUpLeft",
-			switchDelay = 0.6
-		},
 		right = {
 			frameCount = 2,
 			offsetX = 0,
 			offsetY = 0,
 			frameW = 16,
 			frameH = 16,
-			nextState = "faceRight",
-			switchDelay = 0.6
+			nextState = "right",
+			switchDelay = 0.4
 		},
 		left = {
 			frameCount = 2,
 			offsetX = 0,
-			offsetY = 16,
+			offsetY = 18,
 			frameW = 16,
 			frameH = 16,
-			nextState = "faceLeft",
-			switchDelay = 0.6
+			nextState = "left",
+			switchDelay = 0.4
 		},
 		upLeft= {
 			frameCount = 2,
 			offsetX = 0,
-			offsetY = 32,
+			offsetY = 36,
 			frameW = 16,
 			frameH = 16,
-			nextState = "faceUpLeft",
-			switchDelay = 0.6
+			nextState = "upLeft",
+			switchDelay = 0.4
 		},
 		upRight = {
 			frameCount = 2,
 			offsetX = 0,
-			offsetY = 48,
+			offsetY = 54,
 			frameW = 16,
 			frameH = 16,
-			nextState = "faceUpRight",
-			switchDelay = 0.1
+			nextState = "upRight",
+			switchDelay = 0.4
 		},
 		attackRight = {
 			frameCount = 4,
 			offsetX = 0,
-			offsetY = 64,
+			offsetY = 72,
 			frameW = 16,
 			frameH = 16,
 			nextState = "faceRight",
@@ -86,7 +50,7 @@ return {
 		attackLeft = {
 			frameCount = 4,
 			offsetX = 0,
-			offsetY = 80,
+			offsetY = 90,
 			frameW = 16,
 			frameH = 16,
 			nextState = "faceLeft",
@@ -95,7 +59,7 @@ return {
 		attackUp = {
 			frameCount = 3,
 			offsetX = 0,
-			offsetY = 96,
+			offsetY = 108,
 			frameW = 16,
 			frameH = 16,
 			nextState = "faceUpRight",
@@ -104,7 +68,7 @@ return {
 		attackDown = {
 			frameCount = 3,
 			offsetX = 0,
-			offsetY = 112,
+			offsetY = 126,
 			frameW = 16,
 			frameH = 16,
 			nextState = "faceLeft",

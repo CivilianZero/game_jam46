@@ -2,7 +2,7 @@ Player = {}
 
 Player.x = 176
 Player.y = 576
-World:add(Player, Player.x, Player.y, 10, 16)
+World:add(Player, Player.x, Player.y, 16, 16)
 Player.goalX = Player.x
 Player.goalY = Player.y
 Player.speed = 30

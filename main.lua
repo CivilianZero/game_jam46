@@ -38,12 +38,12 @@ function love.load()
 	Talkies = require('libraries.talkies.talkies')
 	local camera = require('libraries.hump.camera')
 	local bump = require('libraries.bump.bump')
+	require('libraries.show')
 
 	-- physics world config
 	World = bump.newWorld(16)
 
 	-- required files
-	require('show')
 	require('sprites')
 	require('player')
 	require('heart')
@@ -88,6 +88,12 @@ function love.load()
 
 	-- set default state (set to skip menu)
 	state = gameStates.gameLoop
+
+	-- setup music
+	SpookyMusic = love.audio.newSource('assets/sounds/spookmeister3D.wav', 'stream')
+	SpookyMusic:setVolume(65)
+	SpookyMusic:setLooping(true)
+	SpookyMusic:play()
 
 	-- Talkies config
 	Talkies.font = PixelFont

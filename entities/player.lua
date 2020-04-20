@@ -149,7 +149,7 @@ function Player:checkNearbyEnemies()
 	local nearest = 10000000;
 	for i,m in ipairs(Monsters) do
 		m.animation:draw()
-		distance = DistanceBetween(Player.x, Player.y, m.x, m.y)
+		local distance = DistanceBetween(Player.x, Player.y, m.x, m.y)
 		if distance < nearest then
 			nearest = distance
 		end

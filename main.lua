@@ -1,18 +1,27 @@
 --state management and non-player keybindings
 local state
 local gameStates = {}
-local musicPlayed = false
 local heartbeatPlaying = false
 local strongHeartbeatPlaying = false
 local musicPlayed = false
 Timer = 60
 
-gameStates.menu = {
+local function gameStart()
+	state = gameStates.dialog
+	HeartSayWhat = {
+		"The estate is dying.",
+		"...feed me...blood"
+		}
+
+	Talkies.say("The Heart in your Basement", HeartSayWhat, {textSpeed = "slow", onstart = function() OnStart() end, oncomplete = function() OnComplete() end})
+end
+
+gameStates.mainMenu = {
 	bindings = {
-		backToGame = function() state = gameStates.gameLoop end
+		startGame = function() gameStart() end
 	},
 	keys = {
-		escape = "backToGame"
+		space = "startGame"
 	}
 }
 gameStates.gameLoop = {
@@ -110,6 +119,7 @@ function love.load()
 
 	-- TiledMap = Tiled('assets/maps/TiledMap.lua')
 	PixelFont = love.graphics.newFont('assets/fonts/Kenney Pixel.ttf', 40)
+	BigFont = love.graphics.newFont('assets/fonts/Kenney Pixel.ttf', 75)
 
 	-- tilemaps
 	-- Basement = sti('assets/maps/basement.lua')
@@ -118,8 +128,8 @@ function love.load()
 	-- debugging print
 	TestPrint = " "
 
-	-- set default state (set to skip menu)
-	state = gameStates.gameLoop
+	-- set default state
+	state = gameStates.mainMenu
 
 	-- setup music
 	SpookyMusic = love.audio.newSource('assets/sounds/spookmeister3D.wav', 'stream')
@@ -154,13 +164,6 @@ function love.load()
 	-- Talkies config
 	Talkies.font = PixelFont
 	Talkies.talkSound = love.audio.newSource("assets/sounds/bep.wav", "static")
-
-	HeartSayWhat = {
-	"The estate is dying.",
-	"...feed me...blood"
-	}
-
-	Talkies.say("The Heart in your Basement", HeartSayWhat, {textSpeed = "slow", onstart = function() OnStart() end, oncomplete = function() OnComplete() end})
 
 	-- create collision objects from tilemaps
 	spawnCollisionObjects(Overworld)
@@ -223,6 +226,8 @@ function love.update(dt)
 end
 
 function love.draw()
+
+	
 	love.graphics.setFont(PixelFont)
 
 	Cam:attach()
@@ -237,11 +242,19 @@ function love.draw()
 	end
 	Heart.animation:draw()
 	Cam:detach()
-
-	love.graphics.setColor(1, 0, 0)
-	love.graphics.print("Timer: "..math.floor(Timer), 10, 30)
 	Talkies.draw()
+	if state == gameStates.gameLoop then
+		love.graphics.setColor(1, 0, 0)
+		love.graphics.print("Seconds till Death: "..math.floor(Timer), 10, 30)
+	end
 
+	if state == gameStates.mainMenu then
+		love.graphics.setFont(BigFont)
+		love.graphics.setColor(1, 0, 0)
+		love.graphics.printf("To Thine Own Heart Feed Blood", 0, love.graphics.getHeight()/2, love.graphics.getWidth(), "center")
+		love.graphics.setFont(PixelFont)
+		love.graphics.printf("Press Space to Feed Blood", 0, love.graphics.getHeight()/2 + 150, love.graphics.getWidth(), "center")
+	end
 	-- game over rules
 	if state == gameStates.gameOver then
 		if not musicPlayed then

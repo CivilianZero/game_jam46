@@ -10,7 +10,7 @@ function TriggerFunctions:heart()
 		if Heart.bloodWant ~= 0 then
 			Talkies.say("The Heart in your Basement", "Moooore...I..need...more", {textSpeed = slow, onstart = function() OnStart() end, oncomplete = function () OnComplete() end})
 		else
-			Talkies.say("The Heart in your Basement", "Well done, I shall live...for now.", {textSpeed = slow, onstart = function() OnStart() end, oncomplete = function () OnComplete() end})
+			Talkies.say("The Heart in your Basement", "Well done, I shall live...for now.", {textSpeed = slow, onstart = function() OnStart() end, oncomplete = function () love.event.quit("restart") end})
 		end
 	end
 end

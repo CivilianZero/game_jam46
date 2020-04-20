@@ -109,7 +109,7 @@ function love.load()
 
 	-- setup music
 	SpookyMusic = love.audio.newSource('assets/sounds/spookmeister3D.wav', 'stream')
-	SpookyMusic:setVolume(65)
+	SpookyMusic:setVolume(55)
 	SpookyMusic:setLooping(true)
 	SpookyMusic:play()
 
@@ -117,7 +117,11 @@ function love.load()
 	Talkies.font = PixelFont
 	Talkies.talkSound = love.audio.newSource("assets/sounds/bep.wav", "static")
 
-	Talkies.say("The Heart in your Basement", "...feed me", {textSpeed = "slow", onstart = function() OnStart() end, oncomplete = function() OnComplete() end})
+	heartSayWhat = {};
+	heartSayWhat[0] = "The estate is dying.";
+	heartSayWhat[1] = "...feed me.";
+
+	Talkies.say("The Heart in your Basement", heartSayWhat, {textSpeed = "slow", onstart = function() OnStart() end, oncomplete = function() OnComplete() end})
 
 	-- create collision objects from tilemaps
 	spawnCollisionObjects(Overworld)

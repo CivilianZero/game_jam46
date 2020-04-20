@@ -1,9 +1,10 @@
 Monsters = {}
 
 function Monsters:init()
-	local layerLength = #Overworld.layers["Monsters"].objects
-	for i=math.random(layerLength),4,math.random(1,layerLength) do
-		local obj = Overworld.layers["Monsters"].objects[i]
+	while #Monsters < 4 do
+		local layer = Overworld.layers["Monsters"].objects
+		local i = math.floor(math.random(1, #layer))
+		local obj = layer[i]
 		local monster = {
 			x = obj.x,
 			y = obj.y,
@@ -13,11 +14,9 @@ function Monsters:init()
 			isDead = false,
 			animation = LoveAnimation.new('assets/sprites/monsterAnimation.lua')
 		}
-
-		if #Monsters < 4 then
-			World:add(monster, obj.x, obj.y, 8, 16)
-			table.insert(Monsters, monster)
-		end
+		print("X: "..monster.x.." Y: "..monster.y)
+		World:add(monster, obj.x, obj.y, 8, 16)
+		table.insert(Monsters, monster)
 	end
 end
 

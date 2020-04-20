@@ -4,7 +4,6 @@ local gameStates = {}
 local musicPlayed = false
 Timer = 60
 
-
 gameStates.menu = {
 	bindings = {
 		backToGame = function() state = gameStates.gameLoop end

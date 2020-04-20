@@ -21,17 +21,17 @@ function Orbs:spawn()
 end
 
 function Orbs:update(playerXPosTable, playerYPosTable, dt)
-    table.insert(Orbs.PlayerXPositions, 1, x)
-    table.insert(Orbs.PlayerYPositions, 1, y)
-    if #Orbs.PlayerXPositions > 500 then
-        table.remove(Orbs.PlayerXPositions);
-        table.remove(Orbs.PlayerYPositions);
-    end
-    for i,o in ipairs(Orbs) do
-        local x = playerXPosTable[i*20]
-        local y = playerYPosTable[i*20]
-        o.x = x
-        o.y = x
+	table.insert(Orbs.PlayerXPositions, 1, x)
+	table.insert(Orbs.PlayerYPositions, 1, y)
+	if #Orbs.PlayerXPositions > 500 then
+			table.remove(Orbs.PlayerXPositions);
+			table.remove(Orbs.PlayerYPositions);
+	end
+	for i,o in ipairs(Orbs) do
+		local x = playerXPosTable[i*20]
+		local y = playerYPosTable[i*20]
+		o.x = x
+		o.y = x
 		o.animation:setPosition(x, y)
 		o.animation:update(dt)
 	end

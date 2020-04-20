@@ -9,7 +9,7 @@ return {
 			frameW = 16,
 			frameH = 16,
 			nextState = "idle",
-			switchDelay = 0.5
+			switchDelay = 0.1
 		},
 		dead = {
 			frameCount = 4,
@@ -18,7 +18,7 @@ return {
 			frameW = 16,
 			frameH = 16,
 			nextState = "idle",
-			switchDelay = 0.08
+			switchDelay = 0.09
 		}
 	}
 }

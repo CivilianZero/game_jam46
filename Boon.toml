@@ -4,27 +4,27 @@
 [project]
 # Author information. If you have a company, then use that in this
 # field instead.
-authors = "Kevin Smith and Jordan Carroll"
+authors = "Kevin Smith and Jordan Carroll and Kenney Goad"
 
 # A description of your game. Not used in all builds.
 description = "Keep the Weird Heart in your basement alive."
 
 # An email to contact for support or more information. Not used
 # in all builds.
-email = "email@example.com"
+email = ""
 
 # A short abbreviated name. Ideally, it should not contain spaces
 # or other special characters, though they can be used. On Windows,
 # this will end up as the name of the executable file.
 # Example: "My Game" and package_name="my_game" becomes "my_game.exe"
-package_name = "my_game"
+package_name = "heart_feed_blood"
 
 # The name of your game. This will be used when distributing the Game
 # as a zip file. On macOS, this is also used as the app file name.
-title = "My Game"
+title = "To Thine Own Heart Feed Blood"
 
 # The website associated with your game. Not used in all builds.
-url = "http://www.example.com/"
+url = "https://civilianzer.itch.io/to-thine-own-heart-feed-blood"
 
 # The Uniform Type Identifier for your game. This is required for the
 # macOS build of the game.

@@ -3,7 +3,14 @@ TriggerFunctions = {}
 
 -- callback functions for triggers
 function TriggerFunctions:heart()
-	
+	Timer = Timer + (15 * #Orbs)
+	Heart.bloodWant = Heart.bloodWant - #Orbs
+	Orbs.clear()
+	if Heart.bloodWant ~= 0 then
+		Talkies.say("The Heart in your Basement", "Moooore...I..need...more", {textSpeed = slow, onstart = function() OnStart() end, oncomeplete = function () OnComplete() end})
+	else
+		Talkies.say("The Heart in your Basement", "Well done, I shall live...for now.", {textSpeed = slow, onstart = function() OnStart() end, oncomeplete = function () OnComplete() end})
+	end
 	return "Placeholder"
 end
 

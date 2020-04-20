@@ -1,8 +1,9 @@
 --state management and non-player keybindings
 local state
 local gameStates = {}
-local timer = 60
 local musicPlayed = false
+Timer = 60
+
 
 gameStates.menu = {
 	bindings = {
@@ -167,10 +168,10 @@ function love.update(dt)
 		Player:update(dt)
 		Monsters:update(dt)
 		Orbs:update(Player.x, Player.y, dt)
-		if math.floor(timer) <= 0 then
+		if math.floor(Timer) <= 0 then
 			state = gameStates.gameOver
 		else
-			timer = timer - dt
+			Timer = Timer - dt
 		end
 	end
 	Talkies.update(dt)
@@ -193,7 +194,7 @@ function love.draw()
 	Cam:detach()
 
 	love.graphics.setColor(1, 0, 0)
-	love.graphics.print("Timer: "..math.floor(timer), 10, 30)
+	love.graphics.print("Timer: "..math.floor(Timer), 10, 30)
 	Talkies.draw()
 
 	-- game over rules

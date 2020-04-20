@@ -37,4 +37,10 @@ function Orbs:update(x, y, dt)
 	end
 end
 
+function Orbs:clear()
+	for i=#Orbs, 1, -1 do
+		table.remove(Orbs, i)
+	end
+end
+
 return Org

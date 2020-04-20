@@ -169,7 +169,11 @@ end
 
 function love.keypressed(key)
 	local binding = state.keys[key]
-  inputHandler(binding)
+	inputHandler(binding)
+	--Debug
+	-- if key == "lctrl" then --set to whatever key you want to use
+	-- 	debug.debug()
+	-- end
 end
 
 -- callback functions for Talkies

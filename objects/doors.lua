@@ -18,6 +18,7 @@ function Doors:init(map)
 			for i,d in ipairs(Doors) do
 				if d.link == door.location then
 					Player.x, Player.y = d.destX, d.destY
+					Player.goalX, Player.goalY = d.destX, d.destY
 					World:update(Player, Player.x, Player.y)
 					break
 				end

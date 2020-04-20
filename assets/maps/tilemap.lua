@@ -5530,9 +5530,9 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 7510,
+          x = 7493,
           y = 3561,
-          width = 10,
+          width = 27,
           height = 11,
           rotation = 0,
           visible = true,
@@ -6054,19 +6054,6 @@ return {
           y = 2896,
           width = 24,
           height = 112,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 531,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 5344,
-          y = 4048,
-          width = 64,
-          height = 64,
           rotation = 0,
           visible = true,
           properties = {}
@@ -9063,7 +9050,7 @@ return {
       objects = {
         {
           id = 87,
-          name = "",
+          name = "Greenhouse",
           type = "",
           shape = "rectangle",
           x = 8151,
@@ -9073,18 +9060,19 @@ return {
           rotation = 0,
           visible = true,
           properties = {
+            ["link"] = "",
             ["location"] = "greenhouse"
           }
         },
         {
           id = 350,
-          name = "",
+          name = "Front Door",
           type = "",
           shape = "rectangle",
-          x = 7493.75,
-          y = 3561,
-          width = 16.25,
-          height = 11.25,
+          x = 7483,
+          y = 3552,
+          width = 10,
+          height = 16,
           rotation = 0,
           visible = true,
           properties = {
@@ -9151,14 +9139,14 @@ return {
           type = "",
           shape = "rectangle",
           x = 11824,
-          y = 3008,
+          y = 3024,
           width = 32,
-          height = 32,
+          height = 16,
           rotation = 0,
           visible = true,
           properties = {
-            ["destX"] = "11826",
-            ["destY"] = "2994",
+            ["destX"] = "11833",
+            ["destY"] = "3009",
             ["link"] = "frontDoor",
             ["location"] = "houseEntrance"
           }
@@ -9272,8 +9260,8 @@ return {
           name = "Bloodbeast 8",
           type = "Monster",
           shape = "rectangle",
-          x = 6928,
-          y = 3248,
+          x = 5360.42,
+          y = 4084.25,
           width = 16,
           height = 16,
           rotation = 0,

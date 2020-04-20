@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 7,
-  nextobjectid = 862,
+  nextobjectid = 864,
   properties = {},
   tilesets = {
     {
@@ -9528,6 +9528,19 @@ return {
           rotation = 0,
           visible = true,
           properties = {}
+        },
+        {
+          id = 862,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 5344,
+          y = 4048,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          visible = true,
+          properties = {}
         }
       }
     },
@@ -9799,19 +9812,6 @@ return {
           shape = "rectangle",
           x = 11743.9,
           y = 2809.5,
-          width = 16,
-          height = 16,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
-          id = 536,
-          name = "Bloodbeast 8",
-          type = "Monster",
-          shape = "rectangle",
-          x = 5360.42,
-          y = 4084.25,
           width = 16,
           height = 16,
           rotation = 0,
@@ -10155,7 +10155,23 @@ return {
       offsety = 0,
       draworder = "topdown",
       properties = {},
-      objects = {}
+      objects = {
+        {
+          id = 863,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 5328,
+          y = 4112,
+          width = 96,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["trigger"] = "heart"
+          }
+        }
+      }
     }
   }
 }

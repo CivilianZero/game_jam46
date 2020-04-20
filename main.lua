@@ -1,6 +1,7 @@
 --state management and non-player keybindings
 local state
 local gameStates = {}
+local timer = 5
 
 gameStates.menu = {
 	bindings = {
@@ -27,6 +28,10 @@ gameStates.dialog = {
 	keys = {
 		space = "progressDialog"
 	}
+}
+gameStates.gameOver = {
+	bindings = {},
+	keys = {}
 }
 
 -- local imports
@@ -115,6 +120,12 @@ function love.load()
 	EnemyDie:setVolume(45)
 	EnemyDie:setLooping(false)
 
+	DoorSound = love.audio.newSource('assets/sounds/DOOR_Indoor_Wood_Close_stereo.wav', 'static')
+
+	GameOver = love.audio.newSource('assets/sounds/yay.wav', 'static')
+	GameOver:setLooping(false)
+
+
 	-- Talkies config
 	Talkies.font = PixelFont
 	Talkies.talkSound = love.audio.newSource("assets/sounds/bep.wav", "static")
@@ -135,6 +146,7 @@ function love.load()
 
 	-- camera object
 	Cam = camera(Player.x, Player.y, 2.5)
+	
 end
 
 function love.update(dt)
@@ -144,6 +156,11 @@ function love.update(dt)
 	if state == gameStates.gameLoop then
 		Player:update(dt)
 		Monsters:update(dt)
+		if math.floor(timer) <= 0 then
+			state = gameStates.gameOver
+		else
+			timer = timer - dt
+		end
 	end
 	Talkies.update(dt)
 end
@@ -152,7 +169,6 @@ function love.draw()
 	love.graphics.setFont(PixelFont)
 
 	Cam:attach()
-
 	love.graphics.setColor(1, 1, 1)
 	Overworld:drawLayer(Overworld.layers["Tilemap"])
 	Player.animation:draw()
@@ -163,8 +179,15 @@ function love.draw()
 	Cam:detach()
 
 	love.graphics.setColor(1, 0, 0)
-	love.graphics.print(TestPrint, 0, 30)
+	love.graphics.print("Timer: "..math.floor(timer), 10, 30)
 	Talkies.draw()
+
+	-- game over rules
+	if state == gameStates.gameOver then
+		print("game over ran")
+		love.graphics.clear()
+		love.graphics.rectangle("fill", 0, 0, love.graphics.getWidth(), love.graphics.getHeight())
+	end
 end
 
 function love.keypressed(key)

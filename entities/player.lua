@@ -5,7 +5,7 @@ function Player:init(map)
 		Player.x = spawn.x
 		Player.y = spawn.y
 	end
-	World:add(Player, Player.x, Player.y, 12, 12)
+	World:add(Player, Player.x, Player.y, 11, 12)
 	Player.goalX = Player.x
 	Player.goalY = Player.y
 	Player.speed = 30
@@ -70,10 +70,9 @@ function Player:moveColliding(dt)
 
 	for i=1, len do
 		local other = cols[i].other
-		ObjectTest = tostring(other.location)
 
 		if other.type == "Door" then
-			other.link()
+			other.linkFunction()
 		end
 	end
 end

@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 7,
-  nextobjectid = 531,
+  nextobjectid = 532,
   properties = {},
   tilesets = {
     {
@@ -5543,9 +5543,9 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 5376,
+          x = 5383,
           y = 4176,
-          width = 64,
+          width = 57,
           height = 16,
           rotation = 0,
           visible = true,
@@ -6252,6 +6252,19 @@ return {
           rotation = 0,
           visible = true,
           properties = {}
+        },
+        {
+          id = 531,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 5344,
+          y = 4048,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          visible = true,
+          properties = {}
         }
       }
     },
@@ -6294,6 +6307,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
+            ["direction"] = "36",
             ["link"] = "houseEntrance",
             ["location"] = "frontDoor"
           }
@@ -6310,6 +6324,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
+            ["direction"] = "16",
             ["link"] = "basement",
             ["location"] = "cellarDoor"
           }
@@ -6321,11 +6336,12 @@ return {
           shape = "rectangle",
           x = 5344,
           y = 4192,
-          width = 32,
+          width = 39,
           height = 16,
           rotation = 0,
           visible = true,
           properties = {
+            ["direction"] = "-16",
             ["link"] = "cellarDoor",
             ["location"] = "basement"
           }
@@ -6357,6 +6373,7 @@ return {
           rotation = 0,
           visible = true,
           properties = {
+            ["direction"] = "-16",
             ["link"] = "frontDoor",
             ["location"] = "houseEntrance"
           }
@@ -6402,11 +6419,11 @@ return {
       objects = {
         {
           id = 530,
-          name = "",
+          name = "Spawn Point",
           type = "",
           shape = "rectangle",
           x = 5360,
-          y = 4112,
+          y = 4144,
           width = 16,
           height = 16,
           rotation = 0,

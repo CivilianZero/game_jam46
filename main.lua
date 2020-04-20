@@ -31,8 +31,14 @@ gameStates.dialog = {
 	}
 }
 gameStates.gameOver = {
-	bindings = {},
-	keys = {}
+	bindings = {
+		quit = function() love.event.quit() end,
+		restart = function() love.event.quit("restart") end
+	},
+	keys = {
+		escape = "quit",
+		space = "restart"
+	}
 }
 
 -- local imports
@@ -132,9 +138,10 @@ function love.load()
 	Talkies.font = PixelFont
 	Talkies.talkSound = love.audio.newSource("assets/sounds/bep.wav", "static")
 
-	HeartSayWhat = {};
-	HeartSayWhat[1] = "The estate is dying.";
-	HeartSayWhat[2] = "...feed me.";
+	HeartSayWhat = {
+	"The estate is dying.",
+	"...feed me...blood"
+	}
 
 	Talkies.say("The Heart in your Basement", HeartSayWhat, {textSpeed = "slow", onstart = function() OnStart() end, oncomplete = function() OnComplete() end})
 

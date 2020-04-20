@@ -1,9 +1,21 @@
 Monsters = {}
 
+local numberOfEnemies = 5
+local function hasValue (tab, val)
+	for i,value in ipairs(tab) do
+			if value.x == val.x then
+					return true
+			end
+	end
+	return false
+end
+
 function Monsters:init()
-	while #Monsters < 4 do
+	math.randomseed(os.time())
+	while #Monsters < numberOfEnemies do
 		local layer = Overworld.layers["Monsters"].objects
-		local i = math.floor(math.random(1, #layer))
+		math.random(#layer)
+		local i = math.random(#layer)
 		local obj = layer[i]
 		local monster = {
 			x = obj.x,
@@ -14,9 +26,11 @@ function Monsters:init()
 			isDead = false,
 			animation = LoveAnimation.new('assets/sprites/monsterAnimation.lua')
 		}
-		print("X: "..monster.x.." Y: "..monster.y)
-		World:add(monster, obj.x, obj.y, 8, 16)
-		table.insert(Monsters, monster)
+		if not hasValue(Monsters, monster) then
+			print(i)
+			World:add(monster, obj.x, obj.y, 8, 16)
+			table.insert(Monsters, monster)
+		end
 	end
 end
 
@@ -34,7 +48,7 @@ function Monsters:update(dt)
 			end
 		end
 	end
-	if #Monsters < 4 then
+	if #Monsters < numberOfEnemies then
 		Monsters:init()
 	end
 end

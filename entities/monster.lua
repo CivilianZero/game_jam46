@@ -1,7 +1,9 @@
 Monsters = {}
 
-function Monsters:init(map)
-	for i,obj in pairs(map.layers["Monsters"].objects) do
+function Monsters:init()
+	local layerLength = #Overworld.layers["Monsters"].objects
+	for i=math.random(layerLength),4,math.random(1,layerLength) do
+		local obj = Overworld.layers["Monsters"].objects[i]
 		local monster = {
 			x = obj.x,
 			y = obj.y,
@@ -31,5 +33,8 @@ function Monsters:update(dt)
 				m.animation:onStateEnd("dead", function() table.remove(Monsters, i) World:remove(m) end)
 			end
 		end
+	end
+	if #Monsters < 4 then 
+		Monsters:init()
 	end
 end

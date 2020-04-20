@@ -142,7 +142,7 @@ function love.load()
 	spawnCollisionObjects(Overworld)
 	-- use layer objects to spawn everything
 	Player:init(Overworld)
-	Monsters:init(Overworld)
+	Monsters:init()
 	Triggers:init(Overworld)
 	Doors:init(Overworld)
 	Orbs:init()

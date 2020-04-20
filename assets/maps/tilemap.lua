@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 7,
-  nextobjectid = 530,
+  nextobjectid = 531,
   properties = {},
   tilesets = {
     {
@@ -5972,9 +5972,9 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 11728,
+          x = 11712,
           y = 2784,
-          width = 16,
+          width = 32,
           height = 16,
           rotation = 0,
           visible = true,
@@ -6268,7 +6268,7 @@ return {
       objects = {
         {
           id = 87,
-          name = "",
+          name = "Greenhouse",
           type = "",
           shape = "rectangle",
           x = 8151,
@@ -6278,12 +6278,13 @@ return {
           rotation = 0,
           visible = true,
           properties = {
+            ["link"] = "",
             ["location"] = "greenhouse"
           }
         },
         {
           id = 350,
-          name = "",
+          name = "Front Door",
           type = "",
           shape = "rectangle",
           x = 7498,
@@ -6293,12 +6294,13 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["location"] = "house"
+            ["link"] = "houseEntrance",
+            ["location"] = "frontDoor"
           }
         },
         {
           id = 351,
-          name = "",
+          name = "Cellar Door",
           type = "",
           shape = "rectangle",
           x = 7585,
@@ -6308,12 +6310,13 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["location"] = "stairs"
+            ["link"] = "basement",
+            ["location"] = "cellarDoor"
           }
         },
         {
           id = 418,
-          name = "",
+          name = "Basement",
           type = "",
           shape = "rectangle",
           x = 5344,
@@ -6323,7 +6326,8 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["location"] = "grave cave"
+            ["link"] = "cellarDoor",
+            ["location"] = "basement"
           }
         },
         {
@@ -6343,7 +6347,7 @@ return {
         },
         {
           id = 433,
-          name = "",
+          name = "House Entrance",
           type = "",
           shape = "rectangle",
           x = 11824,
@@ -6353,22 +6357,8 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["location"] = "house inside"
-          }
-        },
-        {
-          id = 481,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 11712,
-          y = 2784,
-          width = 16,
-          height = 16,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["location"] = "inside stairs"
+            ["link"] = "frontDoor",
+            ["location"] = "houseEntrance"
           }
         }
       }
@@ -6411,12 +6401,12 @@ return {
       properties = {},
       objects = {
         {
-          id = 1,
-          name = "Player Spawn Point",
+          id = 530,
+          name = "",
           type = "",
           shape = "rectangle",
-          x = 192,
-          y = 560,
+          x = 5360,
+          y = 4112,
           width = 16,
           height = 16,
           rotation = 0,

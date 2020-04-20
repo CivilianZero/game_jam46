@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 7,
-  nextobjectid = 807,
+  nextobjectid = 809,
   properties = {},
   tilesets = {
     {
@@ -9359,6 +9359,19 @@ return {
           rotation = 0,
           visible = true,
           properties = {}
+        },
+        {
+          id = 807,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 5344,
+          y = 4048,
+          width = 64,
+          height = 64,
+          rotation = 0,
+          visible = true,
+          properties = {}
         }
       }
     },
@@ -9687,7 +9700,23 @@ return {
       offsety = 0,
       draworder = "topdown",
       properties = {},
-      objects = {}
+      objects = {
+        {
+          id = 808,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 5328,
+          y = 4112,
+          width = 96,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["trigger"] = "heart"
+          }
+        }
+      }
     }
   }
 }

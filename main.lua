@@ -95,14 +95,8 @@ function love.load()
 	-- Basement = sti('assets/maps/basement.lua')
 	Overworld = sti('assets/maps/tilemap.lua')
 	
-	-- debugging for collision
-	ObjectTest = " "
-
-	-- coordinates for debugging camera and player position
-	CamX = 0
-	CamY = 0
-	WorldX = 0
-	WorldY = 0
+	-- debugging print
+	TestPrint = " "
 
 	-- set default state (set to skip menu)
 	state = gameStates.gameLoop
@@ -153,32 +147,16 @@ function love.draw()
 
 	love.graphics.setColor(1, 1, 1)
 	Overworld:drawLayer(Overworld.layers["Tilemap"])
-	-- love.graphics.setColor(1, 0, 0)
-	-- love.graphics.rectangle("fill", Player.x, Player.y, 10, 14)
 	Player.animation:draw()
 	for i,m in ipairs(Monsters) do
 		m.animation:draw()
-		-- love.graphics.setColor(0, 0, 1)
-		-- love.graphics.rectangle("fill", m.x, m.y, m.width, m.height)
 	end
 	Heart.animation:draw()
 	Cam:detach()
 
 	love.graphics.setColor(1, 0, 0)
-	love.graphics.print("Cam: " .. CamX .. ", " .. CamY .. "    World: " .. WorldX .. ", " .. WorldY)
-	love.graphics.print(ObjectTest, 0, 30)
+	love.graphics.print(TestPrint, 0, 30)
 	Talkies.draw()
-end
-
-function love.mousepressed(x, y, b, istouch)
-	if b == 1 then
-		CamX, CamY = Cam:cameraCoords(love.mouse.getPosition())
-		WorldX, WorldY = Cam:worldCoords(love.mouse.getPosition())
-		CamX = math.floor(CamX)
-		CamY = math.floor(CamY)
-		WorldX = math.floor(WorldX)
-		WorldY = math.floor(WorldY)
-	end
 end
 
 function love.keypressed(key)

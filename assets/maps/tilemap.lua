@@ -9088,7 +9088,8 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["direction"] = "36",
+            ["destX"] = "7499",
+            ["destY"] = "3588",
             ["link"] = "houseEntrance",
             ["location"] = "frontDoor"
           }
@@ -9105,7 +9106,8 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["direction"] = "16",
+            ["destX"] = "7588",
+            ["destY"] = "3557",
             ["link"] = "basement",
             ["location"] = "cellarDoor"
           }
@@ -9122,7 +9124,8 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["direction"] = "-16",
+            ["destX"] = "5357",
+            ["destY"] = "4174",
             ["link"] = "cellarDoor",
             ["location"] = "basement"
           }
@@ -9154,7 +9157,8 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["direction"] = "-16",
+            ["destX"] = "11826",
+            ["destY"] = "2994",
             ["link"] = "frontDoor",
             ["location"] = "houseEntrance"
           }

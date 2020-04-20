@@ -1078,21 +1078,24 @@
   </object>
   <object id="350" x="7493.75" y="3561" width="16.25" height="11.25">
    <properties>
-    <property name="direction" value="36"/>
+    <property name="destX" value="7499"/>
+    <property name="destY" value="3588"/>
     <property name="link" value="houseEntrance"/>
     <property name="location" value="frontDoor"/>
    </properties>
   </object>
   <object id="351" name="Cellar Door" x="7585" y="3536" width="14" height="16">
    <properties>
-    <property name="direction" value="16"/>
+    <property name="destX" value="7588"/>
+    <property name="destY" value="3557"/>
     <property name="link" value="basement"/>
     <property name="location" value="cellarDoor"/>
    </properties>
   </object>
   <object id="418" name="Basement" x="5344" y="4192" width="39" height="16">
    <properties>
-    <property name="direction" value="-16"/>
+    <property name="destX" value="5357"/>
+    <property name="destY" value="4174"/>
     <property name="link" value="cellarDoor"/>
     <property name="location" value="basement"/>
    </properties>
@@ -1104,7 +1107,8 @@
   </object>
   <object id="433" name="House Entrance" x="11824" y="3008" width="32" height="32">
    <properties>
-    <property name="direction" value="-16"/>
+    <property name="destX" value="11826"/>
+    <property name="destY" value="2994"/>
     <property name="link" value="frontDoor"/>
     <property name="location" value="houseEntrance"/>
    </properties>

@@ -9,7 +9,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 7,
-  nextobjectid = 882,
+  nextobjectid = 883,
   properties = {},
   tilesets = {
     {
@@ -10415,7 +10415,23 @@ return {
       offsety = 0,
       draworder = "topdown",
       properties = {},
-      objects = {}
+      objects = {
+        {
+          id = 882,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 5360.67,
+          y = 4109.67,
+          width = 16,
+          height = 16,
+          rotation = 0,
+          visible = true,
+          properties = {
+            ["trigger"] = "heart"
+          }
+        }
+      }
     }
   }
 }

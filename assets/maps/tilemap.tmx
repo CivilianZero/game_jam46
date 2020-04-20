@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" width="900" height="400" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="882">
+<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" width="900" height="400" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="883">
  <editorsettings>
   <export target="tilemap.lua" format="lua"/>
  </editorsettings>
@@ -1234,5 +1234,11 @@
  <objectgroup id="5" name="Spawn Point" locked="1">
   <object id="530" name="Spawn Point" x="5360" y="4144" width="16" height="16"/>
  </objectgroup>
- <objectgroup id="6" name="Triggers"/>
+ <objectgroup id="6" name="Triggers">
+  <object id="882" x="5367.67" y="4109.67">
+   <properties>
+    <property name="trigger" value="heart"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

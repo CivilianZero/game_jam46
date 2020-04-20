@@ -150,6 +150,8 @@ function love.load()
 
 	Ritual = love.audio.newSource('assets/sounds/yay.wav', 'static')
 
+	Footsteps = love.audio.newSource('assets/sounds/footsteps.wav', 'satic')
+
 
 	-- Talkies config
 	Talkies.font = PixelFont

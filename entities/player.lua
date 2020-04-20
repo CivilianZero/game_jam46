@@ -150,6 +150,11 @@ function Player:handleAnimation(dt)
 end
 
 function Player:checkNearbyEnemies()
+	if #Orbs == Orbs.MaxOrbs then
+		Player.whispering = false
+		Whisper:stop()
+		return
+	end
 	local nearest = 10000000;
 	for i,m in ipairs(Monsters) do
 		m.animation:draw()
@@ -171,7 +176,7 @@ function Player:checkNearbyEnemies()
 		end
 	end
 
-	Whisper:setVolume((1 - nearest / 550))
+	Whisper:setVolume((1 - nearest / 550) * 0.7)
 end
 
 function Player:update(dt)

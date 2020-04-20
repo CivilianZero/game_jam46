@@ -4,6 +4,7 @@ TriggerFunctions = {}
 -- callback functions for triggers
 function TriggerFunctions:heart()
 	if (#Orbs > 0) then
+		Eat:play()
 		Timer = Timer + (15 * #Orbs)
 		Heart.bloodWant = Heart.bloodWant - #Orbs
 		Orbs.clear()

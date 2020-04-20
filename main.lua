@@ -131,9 +131,9 @@ function love.load()
 	EnemyDie:setVolume(45)
 	EnemyDie:setLooping(false)
 
-	GameOver = love.audio.newSource('assets/sounds/heartdie.wav', 'static')
-	GameOver:setVolume(45)
-	GameOver:setLooping(false)
+	Eat = love.audio.newSource('assets/sounds/heartdie.wav', 'static')
+	Eat:setVolume(45)
+	Eat:setLooping(false)
 
 	Whisper = love.audio.newSource('assets/sounds/whipser.wav', 'static')
 	Whisper:setLooping(true)
@@ -146,9 +146,12 @@ function love.load()
 	StrongHeartbeat = love.audio.newSource('assets/sounds/heartbeatstrong.wav', 'static')
 	StrongHeartbeat:setLooping(true)
 	StrongHeartbeat:setVolume(0.9)
-
-	Ritual = love.audio.newSource('assets/sounds/yay.wav', 'static')
+	Ritual = love.audio.newSource('assets/sounds/shockwave.wav', 'static')
 	Ritual:setLooping(false)
+	Ritual:setVolume(0.9)
+
+	GameOver = love.audio.newSource('assets/sounds/yay.wav', 'static')
+	GameOver:setLooping(false)
 
 
 	-- Talkies config

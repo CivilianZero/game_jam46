@@ -2,7 +2,7 @@
 local state
 local gameStates = {}
 local timer = 60
-local shouldPlayEndMusic = false
+local musicPlayed = false
 
 gameStates.menu = {
 	bindings = {
@@ -191,8 +191,14 @@ function love.draw()
 
 	-- game over rules
 	if state == gameStates.gameOver then
+		if not musicPlayed then
+			GameOver:play()
+			musicPlayed = true
+		end
 		love.graphics.clear()
 		love.graphics.rectangle("fill", 0, 0, love.graphics.getWidth(), love.graphics.getHeight())
+		love.graphics.setColor(0,0,0)
+		love.graphics.printf("Game Over", 0, love.graphics.getHeight()/2, love.graphics.getWidth(), "center")
 	end
 end
 
@@ -212,4 +218,8 @@ end
 
 function OnComplete()
 	state = gameStates.gameLoop
+end
+
+function DistanceBetween(x1, y1, x2, y2)
+	return math.sqrt((y2 - y1)^2 + (x2 - x1)^2)
 end

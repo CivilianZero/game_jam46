@@ -11,8 +11,10 @@ function Monsters:init(map)
 			isDead = false,
 			animation = LoveAnimation.new('assets/sprites/monsterAnimation.lua')
 		}
-		World:add(monster, obj.x, obj.y, 8, 16)
-		table.insert(Monsters, monster)
+		if #Monsters <= 4 then
+			World:add(monster, obj.x, obj.y, 8, 16)
+			table.insert(Monsters, monster)
+		end
 	end
 end
 

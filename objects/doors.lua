@@ -1,20 +1,4 @@
 Doors = {}
-DoorFunctions = {}
-
-function DoorFunctions:basement()
-	for i,d in ipairs(Doors) do
-		if d.location == "stairs" then
-			World:update(Player, math.floor(d.x), math.floor(d.y) + 16)
-			Player.x, Player.y = math.floor(d.x), math.floor(d.y) + 16
-			break
-		end
-	end
-end
-
-function DoorFunctions:stairs()
-	--
-	return
-end
 
 -- used for generating new doors from tilemap object layer, also used for stairs, ladders, etc.
 function Doors:init(map)
@@ -26,9 +10,19 @@ function Doors:init(map)
 			height = d.height,
 			type = "Door",
 			location = d.properties.location,
-			link = DoorFunctions[d.properties.location]
+			link = d.properties.link,
+			direction = d.properties.direction
 		}
-		
+		function door:linkFunction()
+			for i,d in ipairs(Doors) do
+				if d.link == door.location then
+					World:update(Player, d.x, d.y + d.direction)
+					Player.x, Player.y = d.x, d.y + d.direction
+					break
+				end
+			end
+		end
+
 		World:add(door, d.x, d.y, d.width, d.height)
 
 		table.insert(Doors, door)

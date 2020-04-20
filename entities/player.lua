@@ -5,7 +5,7 @@ function Player:init(map)
 		Player.x = spawn.x
 		Player.y = spawn.y
 	end
-	World:add(Player, Player.x, Player.y, 12, 12)
+	World:add(Player, Player.x, Player.y, 11, 12)
 	Player.goalX = Player.x
 	Player.goalY = Player.y
 	Player.speed = 100
@@ -50,17 +50,30 @@ end
 
 function Player:attack()
 	Player.isMoving = true
+	local function checkAttack(x,y)
+		local actualX, actualY, cols, len = World:check(Player, Player.x + x, Player.y + y)
+		for i=1, len do
+			local other = cols[i].other
+			if other.type == "Monster" then
+				other.isDead = true
+			end
+		end
+	end
 	if Player.direction.y == -1 then
 		Player.animation:setState("attackUp")
+		checkAttack(0,-16)
 	end
 	if Player.direction.x == 1 and Player.direction.y == 0 then
 		Player.animation:setState("attackRight")
+		checkAttack(16,0)
 	end
 	if Player.direction.x == -1 and Player.direction.y == 0 then
 		Player.animation:setState("attackLeft")
+		checkAttack(-16,0)
 	end
 	if Player.direction.y == 1 then
 		Player.animation:setState("attackDown")
+		checkAttack(0,16)
 	end
 end
 
@@ -70,10 +83,9 @@ function Player:moveColliding(dt)
 
 	for i=1, len do
 		local other = cols[i].other
-		ObjectTest = tostring(other.location)
 
 		if other.type == "Door" then
-			other.link()
+			other.linkFunction()
 		end
 	end
 end
@@ -126,24 +138,6 @@ function Player:update(dt)
 	Player:changeVelocity(dt)
 	Player:moveColliding(dt)
 	Player:handleAnimation(dt)
-	-- ObjectTest ="X: "..Player.direction.x.." Y: "..Player.direction.y.." State: "..Player.animation:getCurrentState()
 end
-
--- not sure of animation/sprite implementation, depends on sprite sheet
--- function HandlePlayerSprite()
--- 	if Player.facing == 1 then
--- 		if Player.walking then
--- 			Player.sprite = Sprites.
--- 		else
--- 			Player.sprite = Sprites.player_down
--- 		end
--- 	elseif Player.facing == 2 then
--- 		Player.sprite = Sprites.player_left
--- 	elseif Player.facing == 3 then
--- 		Player.sprite = Sprites.player_up
--- 	elseif Player.facing == 4 then
--- 		Player.sprite = Sprites.player_right
--- 	end
--- end
 
 return Player

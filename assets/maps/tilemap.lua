@@ -5413,9 +5413,9 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 5376,
+          x = 5383,
           y = 4176,
-          width = 64,
+          width = 57,
           height = 16,
           rotation = 0,
           visible = true,
@@ -5842,9 +5842,9 @@ return {
           name = "",
           type = "",
           shape = "rectangle",
-          x = 11728,
+          x = 11712,
           y = 2784,
-          width = 16,
+          width = 32,
           height = 16,
           rotation = 0,
           visible = true,
@@ -6054,6 +6054,19 @@ return {
           y = 2896,
           width = 24,
           height = 112,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        },
+        {
+          id = 531,
+          name = "",
+          type = "",
+          shape = "rectangle",
+          x = 5344,
+          y = 4048,
+          width = 64,
+          height = 64,
           rotation = 0,
           visible = true,
           properties = {}
@@ -9075,12 +9088,14 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["location"] = "house"
+            ["direction"] = "36",
+            ["link"] = "houseEntrance",
+            ["location"] = "frontDoor"
           }
         },
         {
           id = 351,
-          name = "",
+          name = "Cellar Door",
           type = "",
           shape = "rectangle",
           x = 7585,
@@ -9090,22 +9105,26 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["location"] = "stairs"
+            ["direction"] = "16",
+            ["link"] = "basement",
+            ["location"] = "cellarDoor"
           }
         },
         {
           id = 418,
-          name = "",
+          name = "Basement",
           type = "",
           shape = "rectangle",
           x = 5344,
           y = 4192,
-          width = 32,
+          width = 39,
           height = 16,
           rotation = 0,
           visible = true,
           properties = {
-            ["location"] = "grave cave"
+            ["direction"] = "-16",
+            ["link"] = "cellarDoor",
+            ["location"] = "basement"
           }
         },
         {
@@ -9125,7 +9144,7 @@ return {
         },
         {
           id = 433,
-          name = "",
+          name = "House Entrance",
           type = "",
           shape = "rectangle",
           x = 11824,
@@ -9135,22 +9154,9 @@ return {
           rotation = 0,
           visible = true,
           properties = {
-            ["location"] = "house inside"
-          }
-        },
-        {
-          id = 481,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 11712,
-          y = 2784,
-          width = 16,
-          height = 16,
-          rotation = 0,
-          visible = true,
-          properties = {
-            ["location"] = "inside stairs"
+            ["direction"] = "-16",
+            ["link"] = "frontDoor",
+            ["location"] = "houseEntrance"
           }
         }
       }
@@ -9223,8 +9229,8 @@ return {
           name = "Bloodbeast 5",
           type = "Monster",
           shape = "rectangle",
-          x = 6810.67,
-          y = 3018.67,
+          x = 8224,
+          y = 3232,
           width = 16,
           height = 16,
           rotation = 0,
@@ -9262,8 +9268,8 @@ return {
           name = "Bloodbeast 8",
           type = "Monster",
           shape = "rectangle",
-          x = 5360.42,
-          y = 4084.25,
+          x = 6928,
+          y = 3248,
           width = 16,
           height = 16,
           rotation = 0,
@@ -9284,12 +9290,12 @@ return {
       properties = {},
       objects = {
         {
-          id = 1,
-          name = "Player Spawn Point",
+          id = 530,
+          name = "Spawn Point",
           type = "",
           shape = "rectangle",
-          x = 192,
-          y = 560,
+          x = 5360,
+          y = 4144,
           width = 16,
           height = 16,
           rotation = 0,

@@ -4,6 +4,5 @@
     ],
     "Lua.diagnostics.disable": [
         "undefined-global"
-    ],
-    "pixelbyte.love2d.path" : "C:/Program Files/Love/love.exe"
+    ]
 }

@@ -23,9 +23,11 @@ function Monsters:update(dt)
 	end
 	for i=#Monsters, 1, -1 do
 		local m = Monsters[i]
-		if m.dead then
-			table.remove(Monsters, i)
-			World:remove(m)
+		if m.isDead then
+			if m.animation:getCurrentState() ~= "dead" then
+				m.animation:setState("dead")
+				m.animation:onStateEnd("dead", function() table.remove(Monsters, i) World:remove(m) end)
+			end
 		end
 	end
 end

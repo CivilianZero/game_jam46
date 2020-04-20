@@ -8,7 +8,7 @@ function Player:init(map)
 	World:add(Player, Player.x, Player.y, 11, 12)
 	Player.goalX = Player.x
 	Player.goalY = Player.y
-	Player.speed = 30
+	Player.speed = 100
 	Player.direction = {x = 1, y = 0}
 	Player.isMoving = false
 	Player.animation = LoveAnimation.new('assets/sprites/playerAnimation.lua')

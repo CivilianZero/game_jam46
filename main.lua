@@ -147,13 +147,9 @@ function love.load()
 	StrongHeartbeat:setVolume(0.9)
 
 	Ritual = love.audio.newSource('assets/sounds/shockwave.wav', 'static')
-	Ritual:setLooping(false)
 	Ritual:setVolume(0.9)
 
 	GameOver = love.audio.newSource('assets/sounds/yay.wav', 'static')
-	GameOver:setLooping(false)
-
-
 
 	-- Talkies config
 	Talkies.font = PixelFont

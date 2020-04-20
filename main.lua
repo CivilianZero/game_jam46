@@ -1,8 +1,10 @@
 --state management and non-player keybindings
 local state
 local gameStates = {}
-local timer = 60
+local timer = 34
 local musicPlayed = false
+local heartbeatPlaying = false
+local strongHeartbeatPlaying = false
 
 gameStates.menu = {
 	bindings = {
@@ -128,7 +130,17 @@ function love.load()
 	EnemyDie:setVolume(45)
 	EnemyDie:setLooping(false)
 
+	Whisper = love.audio.newSource('assets/sounds/whipser.wav', 'static')
+	Whisper:setLooping(true)
+
 	DoorSound = love.audio.newSource('assets/sounds/DOOR_Indoor_Wood_Close_stereo.wav', 'static')
+
+	Heartbeat = love.audio.newSource('assets/sounds/heartbeat.wav', 'static')
+	Heartbeat:setLooping(true)
+	Heartbeat:setVolume(0.6)
+	StrongHeartbeat = love.audio.newSource('assets/sounds/heartbeatstrong.wav', 'static')
+	StrongHeartbeat:setLooping(true)
+	StrongHeartbeat:setVolume(0.9)
 
 	GameOver = love.audio.newSource('assets/sounds/yay.wav', 'static')
 	GameOver:setLooping(false)
@@ -172,6 +184,35 @@ function love.update(dt)
 		else
 			timer = timer - dt
 		end
+
+		if timer <= 30 then
+			if heartbeatPlaying == false then
+				heartbeatPlaying = true
+				Heartbeat:play();
+			end
+		else
+			if heartbeatPlaying == true then
+				Heartbeat:stop();
+				heartbeatPlaying = false
+			end
+		end
+
+		if timer <= 15 then
+			if strongHeartbeatPlaying == false then
+				if heartbeatPlaying == true then
+					heartbeatPlaying = false
+					Heartbeat:stop();
+				end
+				strongHeartbeatPlaying = true
+				StrongHeartbeat:play();
+			end
+		else
+			if strongHeartbeatPlaying == true then
+				StrongHeartbeat:stop();
+				strongHeartbeatPlaying = false
+			end
+		end
+
 	end
 	Talkies.update(dt)
 end

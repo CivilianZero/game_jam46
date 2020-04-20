@@ -12,6 +12,7 @@ function Player:init(map)
 	Player.direction = {x = 1, y = 0}
 	Player.isMoving = false
 	Player.animation = LoveAnimation.new('assets/sprites/playerAnimation.lua')
+	Player.whispering = false;
 end
 
 local function keyDown(key)
@@ -138,10 +139,36 @@ function Player:handleAnimation(dt)
 	Player.animation:update(dt)
 end
 
+function Player:checkNearbyEnemies()
+	local nearest = 10000000;
+	for i,m in ipairs(Monsters) do
+		m.animation:draw()
+		distance = DistanceBetween(Player.x, Player.y, m.x, m.y)
+		if distance < nearest then
+			nearest = distance
+		end
+	end
+
+	if nearest < 600 then
+		if Player.whispering == false then
+			Whisper:play()
+			Player.whispering = true
+		end
+	else 
+		if Player.whispering == true then
+			Whisper:stop()
+			Player.whispering = false
+		end
+	end
+
+	Whisper:setVolume((1 - nearest / 600))
+end
+
 function Player:update(dt)
 	Player:changeVelocity(dt)
 	Player:moveColliding(dt)
 	Player:handleAnimation(dt)
+	Player:checkNearbyEnemies()
 end
 
 return Player

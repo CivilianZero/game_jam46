@@ -42,7 +42,11 @@ local function spawnCollisionObjects(map)
 		wall.x = obj.x
 		wall.y = obj.y
 		wall.width = obj.width
-		wall.height = obj.height
+		if obj.height > 8 then
+			wall.height = obj.height - 8
+		else 
+			wall.height = obj.height
+		end
 		World:add(wall, wall.x, wall.y, wall.width, wall.height)
 	end
 end
@@ -106,6 +110,10 @@ function love.load()
 	SpookyMusic:setVolume(55)
 	SpookyMusic:setLooping(true)
 	SpookyMusic:play()
+
+	EnemyDie = love.audio.newSource('assets/sounds/monster1.wav', 'static')
+	EnemyDie:setVolume(45)
+	EnemyDie:setLooping(false)
 
 	-- Talkies config
 	Talkies.font = PixelFont

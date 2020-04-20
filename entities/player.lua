@@ -55,6 +55,7 @@ function Player:attack()
 		for i=1, len do
 			local other = cols[i].other
 			if other.type == "Monster" then
+				EnemyDie:play()
 				other.isDead = true
 			end
 		end

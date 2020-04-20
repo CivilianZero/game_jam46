@@ -60,6 +60,9 @@ function Player:attack()
 				other.isDead = true
 				if #Orbs < Orbs.MaxOrbs then
 					Orbs.spawn();
+					if #Orbs == Orbs.MaxOrbs then
+						Ritual:play()
+					end
 				end
 			end
 		end
@@ -156,7 +159,7 @@ function Player:checkNearbyEnemies()
 		end
 	end
 
-	if nearest < 500 then
+	if nearest < 550 then
 		if Player.whispering == false then
 			Whisper:play()
 			Player.whispering = true
@@ -168,7 +171,7 @@ function Player:checkNearbyEnemies()
 		end
 	end
 
-	Whisper:setVolume((1 - nearest / 500))
+	Whisper:setVolume((1 - nearest / 550))
 end
 
 function Player:update(dt)

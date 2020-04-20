@@ -895,8 +895,8 @@
  <objectgroup id="4" name="Monsters">
   <object id="2" name="Bloodbeast 1" type="Monster" x="7456" y="3248" width="16" height="16"/>
  </objectgroup>
- <objectgroup id="5" name="Spawn Point">
-  <object id="1" name="Player Spawn Point" x="7552" y="3184" width="16" height="16"/>
+ <objectgroup id="5" name="Spawn Point" locked="1">
+  <object id="1" name="Player Spawn Point" x="192" y="560" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="6" name="Triggers"/>
 </map>

@@ -94,12 +94,9 @@ function love.load()
 	-- tilemaps
 	-- Basement = sti('assets/maps/basement.lua')
 	Overworld = sti('assets/maps/tilemap.lua')
-
-	--global variable for current tilemap
-	CurrentMap = Overworld
 	
 	-- debugging for collision
-	ObjectTest = "Test: "
+	ObjectTest = " "
 
 	-- coordinates for debugging camera and player position
 	CamX = 0
@@ -123,12 +120,12 @@ function love.load()
 	Talkies.say("The Heart in your Basement", "...feed me", {textSpeed = "slow", onstart = function() OnStart() end, oncomplete = function() OnComplete() end})
 
 	-- create collision objects from tilemaps
-	spawnCollisionObjects(CurrentMap)
+	spawnCollisionObjects(Overworld)
 	-- use layer objects to spawn everything
-	Player:init(CurrentMap)
-	Monsters:init(CurrentMap)
-	Triggers:init(CurrentMap)
-	Doors:init(CurrentMap)
+	Player:init(Overworld)
+	Monsters:init(Overworld)
+	Triggers:init(Overworld)
+	Doors:init(Overworld)
 
 	-- camera object
 	Cam = camera(Player.x, Player.y, 3)
@@ -136,7 +133,7 @@ end
 
 function love.update(dt)
 	Cam:lockPosition(Player.x, Player.y, Cam.smooth.damped(1))
-	CurrentMap:update(dt)
+	Overworld:update(dt)
 	Heart:update(dt)
 	if state == gameStates.gameLoop then
 		Player:update(dt)
@@ -151,7 +148,7 @@ function love.draw()
 	Cam:attach()
 
 	love.graphics.setColor(1, 1, 1)
-	CurrentMap:drawLayer(CurrentMap.layers["Tilemap"])
+	Overworld:drawLayer(Overworld.layers["Tilemap"])
 	-- love.graphics.setColor(1, 0, 0)
 	-- love.graphics.rectangle("fill", Player.x, Player.y, 10, 14)
 	Player.animation:draw()
@@ -161,7 +158,6 @@ function love.draw()
 		-- love.graphics.rectangle("fill", m.x, m.y, m.width, m.height)
 	end
 	Heart.animation:draw()
-	World:update(Player, Heart.x, Heart.y + 50)
 	Cam:detach()
 
 	love.graphics.setColor(1, 0, 0)

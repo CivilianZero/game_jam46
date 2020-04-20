@@ -1,6 +1,6 @@
 Heart = {
-	x = 184,
-	y = 480,
+	x = 155,
+	y = 448,
 	animation = LoveAnimation.new('assets/sprites/heartAnimation.lua')
 }
 

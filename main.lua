@@ -117,11 +117,11 @@ function love.load()
 	Talkies.font = PixelFont
 	Talkies.talkSound = love.audio.newSource("assets/sounds/bep.wav", "static")
 
-	heartSayWhat = {};
-	heartSayWhat[1] = "The estate is dying.";
-	heartSayWhat[2] = "...feed me.";
+	HeartSayWhat = {};
+	HeartSayWhat[1] = "The estate is dying.";
+	HeartSayWhat[2] = "...feed me.";
 
-	Talkies.say("The Heart in your Basement", heartSayWhat, {textSpeed = "slow", onstart = function() OnStart() end, oncomplete = function() OnComplete() end})
+	Talkies.say("The Heart in your Basement", HeartSayWhat, {textSpeed = "slow", onstart = function() OnStart() end, oncomplete = function() OnComplete() end})
 
 	-- create collision objects from tilemaps
 	spawnCollisionObjects(Overworld)

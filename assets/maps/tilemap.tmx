@@ -1031,10 +1031,10 @@
   <object id="530" name="Bloodbeast 1" type="Monster" x="8238.42" y="3742.25" width="16" height="16"/>
   <object id="531" name="Bloodbeast 3" type="Monster" x="6840.33" y="3640.83" width="16" height="16"/>
   <object id="532" name="Bloodbeast 4" type="Monster" x="7157.33" y="2750.67" width="16" height="16"/>
-  <object id="533" name="Bloodbeast 5" type="Monster" x="6810.67" y="3018.67" width="16" height="16"/>
+  <object id="533" name="Bloodbeast 5" type="Monster" x="8224" y="3232" width="16" height="16"/>
   <object id="534" name="Bloodbeast 6" type="Monster" x="8260" y="4064" width="16" height="16"/>
   <object id="535" name="Bloodbeast 7" type="Monster" x="11839.2" y="2794.17" width="16" height="16"/>
-  <object id="536" name="Bloodbeast 8" type="Monster" x="5360.42" y="4084.25" width="16" height="16"/>
+  <object id="536" name="Bloodbeast 8" type="Monster" x="6928" y="3248" width="16" height="16"/>
  </objectgroup>
  <objectgroup id="5" name="Spawn Point" locked="1">
   <object id="530" name="Spawn Point" x="5360" y="4144" width="16" height="16"/>

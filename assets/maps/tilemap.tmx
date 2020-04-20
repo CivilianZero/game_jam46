@@ -798,7 +798,7 @@
   <object id="427" x="7520" y="3460.25" width="64" height="112"/>
   <object id="428" x="7392.91" y="3504" width="89.3409" height="68.5"/>
   <object id="429" x="7482.5" y="3528.5" width="10" height="23"/>
-  <object id="430" x="7510" y="3561" width="10" height="11"/>
+  <object id="430" x="7493" y="3561" width="27" height="11"/>
   <object id="432" x="7492.75" y="3504" width="27.25" height="57"/>
   <object id="482" x="11504" y="2896" width="16" height="112"/>
   <object id="483" x="11504" y="3008" width="320" height="16"/>
@@ -1076,7 +1076,7 @@
     <property name="location" value="greenhouse"/>
    </properties>
   </object>
-  <object id="350" x="7493.75" y="3561" width="16.25" height="11.25">
+  <object id="350" name="Front Door" x="7483" y="3552" width="10" height="20">
    <properties>
     <property name="destX" value="7499"/>
     <property name="destY" value="3588"/>
@@ -1105,10 +1105,10 @@
     <property name="location" value="basement"/>
    </properties>
   </object>
-  <object id="433" name="House Entrance" x="11824" y="3008" width="32" height="32">
+  <object id="433" name="House Entrance" x="11824" y="3024" width="32" height="16">
    <properties>
-    <property name="destX" value="11826"/>
-    <property name="destY" value="2994"/>
+    <property name="destX" value="11833"/>
+    <property name="destY" value="3009"/>
     <property name="link" value="frontDoor"/>
     <property name="location" value="houseEntrance"/>
    </properties>

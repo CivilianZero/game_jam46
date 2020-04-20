@@ -5,7 +5,7 @@ function Player:init(map)
 		Player.x = spawn.x
 		Player.y = spawn.y
 	end
-	World:add(Player, Player.x, Player.y, 11, 12)
+	World:add(Player, Player.x, Player.y, 11, 14)
 	Player.goalX = Player.x
 	Player.goalY = Player.y
 	Player.speed = 100

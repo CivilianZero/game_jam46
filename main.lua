@@ -9,8 +9,9 @@ Timer = 60
 local function gameStart()
 	state = gameStates.dialog
 	HeartSayWhat = {
-		"The estate is dying.",
-		"...feed me...blood"
+		"I am dying.",
+		"You must feed me...blood.",
+		"Follow the whispers..."
 		}
 
 	Talkies.say("The Heart in your Basement", HeartSayWhat, {textSpeed = "slow", onstart = function() OnStart() end, oncomplete = function() OnComplete() end})
@@ -249,6 +250,8 @@ function love.draw()
 	end
 
 	if state == gameStates.mainMenu then
+		love.graphics.setColor(0,0,0)
+		love.graphics.rectangle("fill", 0, love.graphics.getHeight()/2 - 40, love.graphics.getWidth(), love.graphics.getHeight())
 		love.graphics.setFont(BigFont)
 		love.graphics.setColor(1, 0, 0)
 		love.graphics.printf("To Thine Own Heart Feed Blood", 0, love.graphics.getHeight()/2, love.graphics.getWidth(), "center")

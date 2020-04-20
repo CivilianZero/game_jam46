@@ -10066,19 +10066,6 @@ return {
           properties = {}
         },
         {
-          id = 536,
-          name = "Bloodbeast 8",
-          type = "Monster",
-          shape = "rectangle",
-          x = 5360.42,
-          y = 4084.25,
-          width = 16,
-          height = 16,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        },
-        {
           id = 781,
           name = "",
           type = "",

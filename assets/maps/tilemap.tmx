@@ -1206,7 +1206,6 @@
   <object id="533" name="Bloodbeast 5" type="Monster" x="8224" y="3232" width="16" height="16"/>
   <object id="534" name="Bloodbeast 6" type="Monster" x="8260" y="4064" width="16" height="16"/>
   <object id="535" name="Bloodbeast 7" type="Monster" x="11743.9" y="2809.5" width="16" height="16"/>
-  <object id="536" name="Bloodbeast 8" type="Monster" x="5360.42" y="4084.25" width="16" height="16"/>
   <object id="781" x="7328" y="4128"/>
   <object id="782" x="7920" y="3888"/>
   <object id="783" x="8000" y="3648"/>

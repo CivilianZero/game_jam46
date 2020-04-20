@@ -61,7 +61,7 @@ function Player:attack()
 				if #Orbs < Orbs.MaxOrbs then
 					Orbs.spawn();
 					if #Orbs == Orbs.MaxOrbs then
-						GameOver:play()
+						Ritual:play()
 					end
 				end
 			end

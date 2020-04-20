@@ -31,7 +31,7 @@ function Orbs:update(x, y, dt)
         local x = Orbs.PlayerXPositions[i*20]
         local y = Orbs.PlayerYPositions[i*20]
         o.x = x
-        o.y = x
+        o.y = y
 		o.animation:setPosition(x, y)
 		o.animation:update(dt)
 	end

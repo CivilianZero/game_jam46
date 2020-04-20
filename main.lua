@@ -118,8 +118,8 @@ function love.load()
 	Talkies.talkSound = love.audio.newSource("assets/sounds/bep.wav", "static")
 
 	heartSayWhat = {};
-	heartSayWhat[0] = "The estate is dying.";
-	heartSayWhat[1] = "...feed me.";
+	heartSayWhat[1] = "The estate is dying.";
+	heartSayWhat[2] = "...feed me.";
 
 	Talkies.say("The Heart in your Basement", heartSayWhat, {textSpeed = "slow", onstart = function() OnStart() end, oncomplete = function() OnComplete() end})
 
@@ -136,7 +136,7 @@ function love.load()
 end
 
 function love.update(dt)
-	Cam:lockPosition(Player.x, Player.y, Cam.smooth.damped(1))
+	Cam:lockPosition(Player.x, Player.y)
 	Overworld:update(dt)
 	Heart:update(dt)
 	if state == gameStates.gameLoop then

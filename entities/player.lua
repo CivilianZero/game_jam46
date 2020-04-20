@@ -57,6 +57,9 @@ function Player:attack()
 			if other.type == "Monster" then
 				EnemyDie:play()
 				other.isDead = true
+				if #Orbs < Orbs.MaxOrbs then
+					Orbs.spawn();
+				end
 			end
 		end
 	end

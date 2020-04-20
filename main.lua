@@ -79,6 +79,7 @@ function love.load()
 	require('objects.sprites')
 	require('entities.player')
 	require('entities.heart')
+	require('entities.orb')
 	require('entities.monster')
 	require('objects.doors')
 	require('objects.triggers')
@@ -132,6 +133,7 @@ function love.load()
 	Monsters:init(Overworld)
 	Triggers:init(Overworld)
 	Doors:init(Overworld)
+	Orbs:init()
 
 	-- camera object
 	Cam = camera(Player.x, Player.y, 2.5)
@@ -144,6 +146,7 @@ function love.update(dt)
 	if state == gameStates.gameLoop then
 		Player:update(dt)
 		Monsters:update(dt)
+		Orbs.update(Player.x, Player.y, dt)
 	end
 	Talkies.update(dt)
 end
@@ -156,6 +159,9 @@ function love.draw()
 	love.graphics.setColor(1, 1, 1)
 	Overworld:drawLayer(Overworld.layers["Tilemap"])
 	Player.animation:draw()
+	for i,o in ipairs(Orbs) do
+		o.animation:draw()
+	end
 	for i,m in ipairs(Monsters) do
 		m.animation:draw()
 	end

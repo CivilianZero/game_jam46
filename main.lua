@@ -1,7 +1,7 @@
 --state management and non-player keybindings
 local state
 local gameStates = {}
-local timer = 5
+local timer = 60
 
 gameStates.menu = {
 	bindings = {
@@ -146,7 +146,7 @@ function love.load()
 
 	-- camera object
 	Cam = camera(Player.x, Player.y, 2.5)
-	
+
 end
 
 function love.update(dt)
@@ -184,7 +184,6 @@ function love.draw()
 
 	-- game over rules
 	if state == gameStates.gameOver then
-		print("game over ran")
 		love.graphics.clear()
 		love.graphics.rectangle("fill", 0, 0, love.graphics.getWidth(), love.graphics.getHeight())
 	end

@@ -2,6 +2,7 @@
 local state
 local gameStates = {}
 local timer = 60
+local shouldPlayEndMusic = false
 
 gameStates.menu = {
 	bindings = {
@@ -158,7 +159,7 @@ function love.update(dt)
 	if state == gameStates.gameLoop then
 		Player:update(dt)
 		Monsters:update(dt)
-		Orbs.update(Player.x, Player.y, dt)
+		Orbs:update(Player.x, Player.y, dt)
 		if math.floor(timer) <= 0 then
 			state = gameStates.gameOver
 		else

@@ -20,7 +20,7 @@ function Orbs:spawn()
     table.insert(Orbs, orb)
 end
 
-function Orbs:update(playerXPosTable, playerYPosTable, dt)
+function Orbs:update(x, y, dt)
     table.insert(Orbs.PlayerXPositions, 1, x)
     table.insert(Orbs.PlayerYPositions, 1, y)
     if #Orbs.PlayerXPositions > 500 then
@@ -28,8 +28,8 @@ function Orbs:update(playerXPosTable, playerYPosTable, dt)
         table.remove(Orbs.PlayerYPositions);
     end
     for i,o in ipairs(Orbs) do
-        local x = playerXPosTable[i*20]
-        local y = playerYPosTable[i*20]
+        local x = Orbs.PlayerXPositions[i*20]
+        local y = Orbs.PlayerYPositions[i*20]
         o.x = x
         o.y = x
 		o.animation:setPosition(x, y)

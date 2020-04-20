@@ -154,7 +154,7 @@ function love.load()
 	GameOver:setLooping(false)
 
 
-	Footsteps = love.audio.newSource('assets/sounds/footsteps.wav', 'satic')
+	Footsteps = love.audio.newSource('assets/sounds/footsteps.wav', 'static')
 
 
 	-- Talkies config

@@ -206,7 +206,3 @@ end
 function OnComplete()
 	state = gameStates.gameLoop
 end
-
--- function OnMonsterComplete()
--- 	Talkies.say("", "You got some blood!", {onstart = function() OnStart() end, oncomplete = function() OnComplete() end})
--- end

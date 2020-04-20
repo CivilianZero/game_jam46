@@ -62,12 +62,20 @@ function Player:attack()
 	if Player.direction.y == 1 then
 		Player.animation:setState("attackDown")
 	end
-	ObjectTest = "State: "..Player.animation:getCurrentState()
 end
 
 function Player:moveColliding(dt)
-	local actualX, actualY = World:move(Player, Player.goalX, Player.goalY, self.filter)
+	local actualX, actualY, cols, len = World:move(Player, Player.goalX, Player.goalY, self.filter)
 	Player.x, Player.y = actualX, actualY
+
+	for i=1, len do
+		local other = cols[i].other
+		ObjectTest = tostring(other.location)
+
+		if other.type == "Door" then
+			other.link()
+		end
+	end
 end
 
 local function changeState(state)
@@ -85,7 +93,7 @@ function Player:filter(other)
 	if type == "Wall" then return "slide"
 	elseif type == "Monster" then return "slide"
 	elseif type == "Trigger" then return "cross"
-	elseif type == "Door" then return "touch"
+	elseif type == "Door" then return "cross"
 	end
 end
 
@@ -118,7 +126,7 @@ function Player:update(dt)
 	Player:changeVelocity(dt)
 	Player:moveColliding(dt)
 	Player:handleAnimation(dt)
-	ObjectTest ="X: "..Player.direction.x.." Y: "..Player.direction.y.." State: "..Player.animation:getCurrentState()
+	-- ObjectTest ="X: "..Player.direction.x.." Y: "..Player.direction.y.." State: "..Player.animation:getCurrentState()
 end
 
 -- not sure of animation/sprite implementation, depends on sprite sheet

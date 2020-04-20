@@ -91,6 +91,9 @@ function Player:moveColliding(dt)
 		if other.type == "Door" then
 			other.linkFunction()
 		end
+		if other.type == "Trigger" then
+			other.trigger()
+		end
 	end
 end
 

@@ -152,7 +152,7 @@ function Player:checkNearbyEnemies()
 		end
 	end
 
-	if nearest < 600 then
+	if nearest < 500 then
 		if Player.whispering == false then
 			Whisper:play()
 			Player.whispering = true
@@ -164,7 +164,7 @@ function Player:checkNearbyEnemies()
 		end
 	end
 
-	Whisper:setVolume((1 - nearest / 600))
+	Whisper:setVolume((1 - nearest / 500))
 end
 
 function Player:update(dt)

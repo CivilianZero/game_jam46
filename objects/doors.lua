@@ -11,13 +11,14 @@ function Doors:init(map)
 			type = "Door",
 			location = d.properties.location,
 			link = d.properties.link,
-			direction = d.properties.direction
+			destX = tonumber(d.properties.destX),
+			destY = tonumber(d.properties.destY)
 		}
 		function door:linkFunction()
 			for i,d in ipairs(Doors) do
 				if d.link == door.location then
-					World:update(Player, d.x, d.y + d.direction)
-					Player.x, Player.y = d.x, d.y + d.direction
+					World:update(Player, d.destX, d.destY)
+					Player.x, Player.y = d.destX, d.destY
 					break
 				end
 			end

@@ -67,18 +67,22 @@ function Player:attack()
 	if Player.direction.y == -1 then
 		Player.animation:setState("attackUp")
 		checkAttack(0,-16)
+		-- Footsteps:play()
 	end
 	if Player.direction.x == 1 and Player.direction.y == 0 then
 		Player.animation:setState("attackRight")
 		checkAttack(16,0)
+		-- Footsteps:play()
 	end
 	if Player.direction.x == -1 and Player.direction.y == 0 then
 		Player.animation:setState("attackLeft")
 		checkAttack(-16,0)
+		-- Footsteps:play()
 	end
 	if Player.direction.y == 1 then
 		Player.animation:setState("attackDown")
 		checkAttack(0,16)
+		-- Footsteps:play()
 	end
 end
 

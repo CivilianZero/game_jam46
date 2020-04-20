@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" width="900" height="400" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="862">
+<map version="1.2" tiledversion="1.3.4" orientation="orthogonal" renderorder="right-down" width="900" height="400" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="864">
  <editorsettings>
   <export target="tilemap.lua" format="lua"/>
  </editorsettings>
@@ -1106,6 +1106,7 @@
   <object id="859" x="7953.5" y="3425" width="22.5" height="58.5"/>
   <object id="860" x="7938" y="3410.5" width="22.5" height="27"/>
   <object id="861" x="7923" y="3379.5" width="22.5" height="27"/>
+  <object id="862" x="5344" y="4048" width="64" height="64"/>
  </objectgroup>
  <objectgroup id="3" name="Doors">
   <object id="87" name="Greenhouse" x="8151" y="3300" width="15" height="24">
@@ -1186,7 +1187,6 @@
   <object id="533" name="Bloodbeast 5" type="Monster" x="8224" y="3232" width="16" height="16"/>
   <object id="534" name="Bloodbeast 6" type="Monster" x="8260" y="4064" width="16" height="16"/>
   <object id="535" name="Bloodbeast 7" type="Monster" x="11743.9" y="2809.5" width="16" height="16"/>
-  <object id="536" name="Bloodbeast 8" type="Monster" x="5360.42" y="4084.25" width="16" height="16"/>
   <object id="781" x="7328" y="4128"/>
   <object id="782" x="7920" y="3888"/>
   <object id="783" x="8000" y="3648"/>
@@ -1214,5 +1214,11 @@
  <objectgroup id="5" name="Spawn Point" locked="1">
   <object id="530" name="Spawn Point" x="5360" y="4144" width="16" height="16"/>
  </objectgroup>
- <objectgroup id="6" name="Triggers"/>
+ <objectgroup id="6" name="Triggers">
+  <object id="863" x="5328" y="4112" width="96" height="16">
+   <properties>
+    <property name="trigger" value="heart"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

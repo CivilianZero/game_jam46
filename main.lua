@@ -129,7 +129,6 @@ function love.load()
 
 	EnemyDie = love.audio.newSource('assets/sounds/monster1.wav', 'static')
 	EnemyDie:setVolume(45)
-	EnemyDie:setLooping(false)
 
 	Whisper = love.audio.newSource('assets/sounds/whipser.wav', 'static')
 	Whisper:setLooping(true)
@@ -144,7 +143,6 @@ function love.load()
 	StrongHeartbeat:setVolume(0.9)
 
 	GameOver = love.audio.newSource('assets/sounds/yay.wav', 'static')
-	GameOver:setLooping(false)
 
 
 	-- Talkies config

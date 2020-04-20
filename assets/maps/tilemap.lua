@@ -9072,7 +9072,7 @@ return {
           x = 7483,
           y = 3552,
           width = 10,
-          height = 20,
+          height = 16,
           rotation = 0,
           visible = true,
           properties = {

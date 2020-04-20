@@ -1076,7 +1076,7 @@
     <property name="location" value="greenhouse"/>
    </properties>
   </object>
-  <object id="350" name="Front Door" x="7483" y="3552" width="10" height="20">
+  <object id="350" name="Front Door" x="7483" y="3552" width="10" height="16">
    <properties>
     <property name="destX" value="7499"/>
     <property name="destY" value="3588"/>

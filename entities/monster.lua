@@ -34,7 +34,7 @@ function Monsters:update(dt)
 			end
 		end
 	end
-	if #Monsters < 4 then 
+	if #Monsters < 4 then
 		Monsters:init()
 	end
 end

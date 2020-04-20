@@ -132,7 +132,7 @@ function love.load()
 	Doors:init(Overworld)
 
 	-- camera object
-	Cam = camera(Player.x, Player.y, 3)
+	Cam = camera(Player.x, Player.y, 2.5)
 end
 
 function love.update(dt)

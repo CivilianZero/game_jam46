@@ -55,7 +55,7 @@ function Player:attack()
 		local actualX, actualY, cols, len = World:check(Player, Player.x + x, Player.y + y)
 		for i=1, len do
 			local other = cols[i].other
-			if other.type == "Monster" then
+			if other.type == "Monster" and other.isDead == false then
 				EnemyDie:play()
 				other.isDead = true
 				if #Orbs < Orbs.MaxOrbs then
